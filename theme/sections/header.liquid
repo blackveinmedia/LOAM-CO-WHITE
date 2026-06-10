@@ -29,8 +29,40 @@
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="cart-count" aria-hidden="true"{% if cart.item_count == 0 %} style="display:none"{% endif %}>{{ cart.item_count }}</span>
     </button>
+    <button class="site-header__hamburger" data-action="open-nav" aria-label="Open navigation" aria-expanded="false">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M0 1h22M0 8h22M0 15h22"/>
+      </svg>
+    </button>
   </div>
 </header>
+
+<div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+  <div class="mobile-nav__header">
+    <a href="{{ routes.root_url }}" class="mobile-nav__logo">LOAM<small>CO.</small></a>
+    <button class="mobile-nav__close" data-action="close-nav" aria-label="Close navigation">✕</button>
+  </div>
+  <div class="mobile-nav__links">
+    {% assign nav = linklists[section.settings.menu] %}
+    {% if nav.links.size > 0 %}
+      {% for link in nav.links %}
+        <a href="{{ link.url }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a>
+      {% endfor %}
+    {% else %}
+      <a href="{{ routes.collections_url }}">Shop</a>
+      <a href="{{ routes.root_url }}pages/about">About</a>
+      <a href="{{ routes.root_url }}pages/why-loam">Why Loam</a>
+      <a href="{{ routes.root_url }}blogs/blog">Blog</a>
+      <a href="{{ routes.root_url }}pages/ambassadors">Ambassadors</a>
+    {% endif %}
+  </div>
+  <div class="mobile-nav__footer">
+    <a href="{{ routes.search_url }}" class="mobile-nav__footer-link">Search</a>
+    <a href="{{ routes.account_url }}" class="mobile-nav__footer-link">Account</a>
+  </div>
+</nav>
 
 {% schema %}
 {

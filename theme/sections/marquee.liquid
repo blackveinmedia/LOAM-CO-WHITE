@@ -10,6 +10,7 @@
   endif
   assign items = section.settings.text | split: '|'
 %}
+{% if section.settings.show_section != false %}
 <div class="marquee-section{% if section.settings.theme == 'light' %} marquee-section--light{% endif %}" style="background:{{ bg_color }}" aria-hidden="true">
   <div class="marquee-track">
     {% for i in (1..4) %}
@@ -21,11 +22,13 @@
     {% endfor %}
   </div>
 </div>
+{% endif %}
 
 {% schema %}
 {
   "name": "Marquee Strip",
   "settings": [
+    { "type": "checkbox", "id": "show_section", "label": "Show section", "default": true },
     {
       "type": "text",
       "id": "text",

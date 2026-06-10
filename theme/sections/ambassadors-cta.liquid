@@ -1,3 +1,4 @@
+{% if section.settings.show_section != false %}
 <section id="ambassadors" class="section-ambassador">
   <div class="section-ambassador__inner">
     <div>
@@ -6,7 +7,7 @@
         Ride with us.<br>
         <span class="neon-block">Get paid.</span>
       </h2>
-      <p style="font-size:16px;line-height:1.55;color:var(--loam-bone);margin-top:22px;max-width:480px">
+      <p style="font-size:16px;line-height:1.55;color:var(--loam-white);margin-top:22px;max-width:480px">
         {{ section.settings.body | default: 'Make content. Push people to the kit. Earn a cut on every sale through your link. No quotas. No exclusivity. Just riders selling kit they actually wear.' }}
       </p>
 
@@ -48,7 +49,7 @@
         {% for perk in perks %}
           <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px">
             <span style="color:var(--loam-neon);font-weight:700;flex-shrink:0">+</span>
-            <span style="font-size:13px;color:var(--loam-bone);line-height:1.4">{{ perk }}</span>
+            <span style="font-size:13px;color:var(--loam-white);line-height:1.4">{{ perk }}</span>
           </div>
         {% endfor %}
       </div>
@@ -60,10 +61,13 @@
   </div>
 </section>
 
+{% endif %}
+
 {% schema %}
 {
   "name": "Ambassadors CTA",
   "settings": [
+    { "type": "checkbox", "id": "show_section", "label": "Show section", "default": true },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AMBASSADORS · AFFILIATES" },
     { "type": "textarea", "id": "body", "label": "Body text" },
     { "type": "text", "id": "stat_1_number", "label": "Stat 1 number", "default": "15%" },

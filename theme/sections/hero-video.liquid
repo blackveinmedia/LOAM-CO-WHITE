@@ -1,3 +1,4 @@
+{% if section.settings.show_section != false %}
 <section class="hero-video" aria-label="Hero banner">
   {% if section.settings.video_url != blank %}
     <video class="hero-video__bg-img" src="{{ section.settings.video_url }}" autoplay muted loop playsinline aria-hidden="true"></video>
@@ -27,10 +28,13 @@
   </div>
 </section>
 
+{% endif %}
+
 {% schema %}
 {
   "name": "Hero Banner",
   "settings": [
+    { "type": "checkbox", "id": "show_section", "label": "Show section", "default": true },
     {
       "type": "text",
       "id": "video_url",

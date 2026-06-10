@@ -273,6 +273,29 @@
     });
   });
 
+  /* ── Mobile navigation ──────────────────────────────────────────────────── */
+  const mobileNav        = document.getElementById('mobile-nav');
+  const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+  const hamburgerBtn     = document.querySelector('[data-action="open-nav"]');
+
+  function openNav() {
+    mobileNav?.classList.add('is-open');
+    mobileNavOverlay?.classList.add('is-open');
+    hamburgerBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    mobileNav?.classList.remove('is-open');
+    mobileNavOverlay?.classList.remove('is-open');
+    hamburgerBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburgerBtn?.addEventListener('click', openNav);
+  document.querySelector('[data-action="close-nav"]')?.addEventListener('click', closeNav);
+  mobileNavOverlay?.addEventListener('click', closeNav);
+
   /* ── Init: refresh cart count on page load ───────────────────────────────── */
   fetchCart().then(cart => {
     document.querySelectorAll('.cart-count').forEach(el => {

@@ -4,6 +4,13 @@
       "type": "ambassadors-hero",
       "settings": {}
     },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "text": "RIDER-OWNED|NO PRESTIGE TAX|EARN 15% COMMISSION|NO JOINING FEE|MONTHLY PAYOUTS",
+        "theme": "dark"
+      }
+    },
     "how-it-works": {
       "type": "how-it-works",
       "settings": {}
@@ -18,6 +25,7 @@
   },
   "order": [
     "ambassadors-hero",
+    "marquee",
     "how-it-works",
     "apply-form"
   ]
