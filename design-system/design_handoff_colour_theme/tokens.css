@@ -1,0 +1,79 @@
+/* ==========================================================================
+   LOAM CO — Colour Theme: Light (White bg, Black fg, Neon accent unchanged)
+   Drop these :root overrides into the theme's main CSS file.
+   They override the dark defaults without changing any other values.
+   ========================================================================== */
+
+:root {
+  /* ── Core background / foreground swap ── */
+  --loam-background:        #FFFFFF;   /* was #0A0A0A */
+  --loam-background-elev:   #F0F0F0;   /* was #1A1A1A — cards, elevated surfaces */
+  --loam-foreground:        #0A0A0A;   /* was #FFFFFF */
+
+  /* ── Nav (frosted glass) ── */
+  --loam-nav-bg:            rgba(255, 255, 255, 0.92);  /* was rgba(10,10,10,0.92) */
+
+  /* ── Accent: DO NOT CHANGE ── */
+  --loam-neon:              #DAEE01;   /* unchanged */
+  --loam-neon-dim:          #B8C800;   /* unchanged */
+
+  /* ── Greys: unchanged ── */
+  --loam-charcoal:          #2E2E2E;   /* borders/dividers — still visible on white */
+  --loam-graphite:          #5A5A5A;   /* muted text */
+  --loam-ash:               #9A9A9A;   /* secondary text */
+  --loam-bone:              #E8E6E1;   /* unchanged */
+
+  /* ── Semantic aliases (map to above) ── */
+  --color-background:       var(--loam-background);
+  --color-foreground:       var(--loam-foreground);
+  --color-card-background:  var(--loam-background-elev);
+  --color-border:           var(--loam-charcoal);
+  --color-accent:           var(--loam-neon);
+
+  /* ── Sections that KEEP their dark/neon backgrounds ── */
+  /* Marquee: dark bg (#0A0A0A) + neon text — intentional, do not change */
+  /* Newsletter CTA: neon bg (#DAEE01) + dark text — intentional, do not change */
+}
+
+/* ── Icon / SVG stroke colour swap ── */
+/* Any icon that inherits currentColor will automatically flip with --color-foreground */
+/* If icons are hardcoded white, override here: */
+.site-header__icon-btn svg,
+.site-header__icon-btn,
+.cart-count {
+  color: var(--loam-foreground);
+}
+
+/* ── Cart drawer ── */
+.cart-drawer {
+  background: var(--loam-background);
+  color: var(--loam-foreground);
+}
+
+/* ── Product cards ── */
+.product-card {
+  background: var(--loam-background);
+  border-color: var(--loam-foreground);
+  color: var(--loam-foreground);
+}
+.product-card__image-wrap {
+  background: var(--loam-background-elev);
+}
+
+/* ── Review cards ── */
+.review-card {
+  background: var(--loam-background-elev);
+}
+
+/* ── Ambassador form box ── */
+.ambassador-form-box {
+  background: var(--loam-background-elev);
+  border-color: var(--loam-foreground);
+  color: var(--loam-foreground);
+}
+
+/* ── Footer ── */
+.site-footer {
+  background: var(--loam-background);
+  color: var(--loam-foreground);
+}
