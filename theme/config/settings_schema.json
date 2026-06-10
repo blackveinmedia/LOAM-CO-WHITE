@@ -1,0 +1,68 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Loam Co.",
+    "theme_version": "1.0.0",
+    "theme_author": "Loam Co.",
+    "theme_documentation_url": "https://loam.co",
+    "theme_support_url": "https://loam.co/pages/contact"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (neon)",
+        "default": "#DAEE01",
+        "info": "The brand neon yellow-green. Used for CTAs, highlights, and accent elements."
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Body text",
+        "default": "#0A0A0A"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "type_display",
+        "label": "Display font",
+        "options": [
+          { "value": "bebas", "label": "Bebas Neue (recommended)" },
+          { "value": "archivo-narrow", "label": "Archivo Narrow" }
+        ],
+        "default": "bebas"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "url", "id": "social_instagram_link", "label": "Instagram" },
+      { "type": "url", "id": "social_tiktok_link", "label": "TikTok" },
+      { "type": "url", "id": "social_youtube_link", "label": "YouTube" }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Default share image",
+        "info": "Used as the default Open Graph image."
+      }
+    ]
+  }
+]

@@ -1,0 +1,77 @@
+{% comment %}
+  Renders a product card.
+  Accepts:
+    - card_product: {Object} Shopify product object
+  Usage:
+    {% render 'product-card', card_product: product %}
+{% endcomment %}
+
+{%- liquid
+  assign card_product = card_product | default: product
+  assign tag_label = ''
+  for tag in card_product.tags
+    assign tag_lower = tag | downcase
+    if tag_lower == 'new'
+      assign tag_label = 'NEW'
+    elsif tag_lower == 'restocked'
+      assign tag_label = 'RESTOCKED'
+    elsif tag_lower == 'sale'
+      assign tag_label = 'SALE'
+    endif
+  endfor
+  assign first_variant = card_product.selected_or_first_available_variant
+-%}
+
+<div class="product-card">
+  <a href="{{ card_product.url }}" class="product-card__image-link" tabindex="-1" aria-hidden="true">
+    <div class="product-card__image-wrap">
+      {%- if tag_label != '' -%}
+        <span class="product-card__tag product-card__tag--{{ tag_label | downcase }}">{{ tag_label }}</span>
+      {%- endif -%}
+
+      {%- if card_product.featured_image -%}
+        <img
+          src="{{ card_product.featured_image | image_url: width: 800 }}"
+          srcset="{{ card_product.featured_image | image_url: width: 400 }} 400w,
+                  {{ card_product.featured_image | image_url: width: 800 }} 800w"
+          sizes="(max-width: 768px) 50vw, 25vw"
+          alt="{{ card_product.featured_image.alt | default: card_product.title | escape }}"
+          loading="lazy"
+          width="800"
+          height="800"
+        >
+      {%- else -%}
+        <div class="product-card__placeholder">{{ card_product.title | upcase }} · IMAGE</div>
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div class="product-card__body">
+    <a href="{{ card_product.url }}" class="product-card__title">{{ card_product.title }}</a>
+
+    {%- if card_product.description != blank -%}
+      <p class="product-card__desc">{{ card_product.description | strip_html | truncate: 80 }}</p>
+    {%- endif -%}
+
+    <div class="product-card__price">
+      <span class="product-card__price-current">{{ card_product.price | money }}</span>
+      {%- if card_product.compare_at_price > card_product.price -%}
+        <span class="product-card__price-compare">{{ card_product.compare_at_price | money }} RRP elsewhere</span>
+      {%- endif -%}
+    </div>
+
+    <div class="btn-add-to-cart">
+      {%- if first_variant.available -%}
+        <button
+          data-add-to-cart
+          data-variant-id="{{ first_variant.id }}"
+          aria-label="Add {{ card_product.title | escape }} to cart"
+        >
+          ADD TO CART
+        </button>
+      {%- else -%}
+        <button disabled aria-label="{{ card_product.title | escape }} is sold out">SOLD OUT</button>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

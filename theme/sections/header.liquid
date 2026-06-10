@@ -1,0 +1,47 @@
+<header class="site-header" role="banner">
+  <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name }}">
+    LOAM<span>CO.</span>
+  </a>
+
+  <nav class="site-header__nav" aria-label="Main navigation">
+    {% assign nav = linklists[section.settings.menu] %}
+    {% if nav.links.size > 0 %}
+      {% for link in nav.links %}
+        <a href="{{ link.url }}"{% if link.active %} class="active" aria-current="page"{% endif %}>{{ link.title }}</a>
+      {% endfor %}
+    {% else %}
+      <a href="{{ routes.collections_url }}">Shop</a>
+      <a href="{{ routes.root_url }}pages/about">About</a>
+      <a href="{{ routes.root_url }}pages/why-loam">Why Loam</a>
+      <a href="{{ routes.root_url }}blogs/blog">Blog</a>
+      <a href="{{ routes.root_url }}pages/ambassadors">Ambassadors</a>
+    {% endif %}
+  </nav>
+
+  <div class="site-header__actions">
+    <a href="{{ routes.search_url }}" class="site-header__icon-btn" aria-label="Search">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </a>
+    <a href="{{ routes.account_url }}" class="site-header__icon-btn" aria-label="Account">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <button class="site-header__icon-btn" data-action="open-cart" aria-label="Open cart">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" aria-hidden="true"{% if cart.item_count == 0 %} style="display:none"{% endif %}>{{ cart.item_count }}</span>
+    </button>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

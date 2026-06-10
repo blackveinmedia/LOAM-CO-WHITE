@@ -1,0 +1,54 @@
+<section class="hero-video" aria-label="Hero banner">
+  {% if section.settings.video_url != blank %}
+    <video class="hero-video__bg-img" src="{{ section.settings.video_url }}" autoplay muted loop playsinline aria-hidden="true"></video>
+  {% elsif section.settings.background_image != blank %}
+    <img class="hero-video__bg-img" src="{{ section.settings.background_image | image_url: width: 1920 }}" alt="" loading="eager">
+  {% else %}
+    <div class="hero-video__placeholder" aria-hidden="true">
+      <div class="hero-video__play-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#DAEE01"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div class="hero-video__placeholder-text">
+        BANNER VIDEO<br>
+        <span style="color:var(--loam-graphite)">[ ATTACH .MP4 IN THEME EDITOR ]</span>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="hero-video__stamp">
+    <span class="eyebrow">{{ section.settings.stamp | default: 'UK-OWNED · RIDER-RUN' }}</span>
+  </div>
+
+  <div class="hero-video__scroll" aria-hidden="true">
+    SCROLL
+    <svg width="14" height="20" viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 2v28M5 23l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (.mp4)",
+      "info": "Upload your video to Files and paste the URL here."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Fallback image"
+    },
+    {
+      "type": "text",
+      "id": "stamp",
+      "label": "Stamp text",
+      "default": "UK-OWNED · RIDER-RUN"
+    }
+  ],
+  "presets": [{ "name": "Hero Banner" }]
+}
+{% endschema %}

@@ -1,0 +1,80 @@
+<div style="background:var(--loam-white)">
+
+  <!-- Hero -->
+  <div style="background:var(--loam-black);padding:80px var(--space-6)">
+    <div style="max-width:900px;margin:0 auto">
+      <p class="eyebrow" style="margin-bottom:20px">OUR STORY</p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(64px,10vw,120px);color:var(--loam-white);line-height:.9;letter-spacing:.02em;margin-bottom:32px">
+        Born on<br>the trails.
+      </h1>
+      <p style="font-size:20px;color:var(--loam-bone);line-height:1.55;max-width:600px">
+        {{ section.settings.intro | default: "We started Loam Co. because we were sick of paying a premium for someone else's badge. Same factories. Same fabrics. Half the price. The rest stays in your pocket." }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Neon marquee break -->
+  <div style="background:var(--loam-neon);padding:18px 0;overflow:hidden;white-space:nowrap">
+    <span style="font-family:var(--font-display);font-size:28px;letter-spacing:.08em;color:#0A0A0A;padding-right:40px">RIDER-OWNED · NO PRESTIGE TAX · TWEED VALLEY TESTED · BUILT FOR THE GRAFT · RIDER-OWNED · NO PRESTIGE TAX · TWEED VALLEY TESTED · BUILT FOR THE GRAFT ·</span>
+  </div>
+
+  <!-- Story body -->
+  <div style="max-width:800px;margin:0 auto;padding:80px var(--space-6)">
+    <div style="font-size:16px;line-height:1.7;color:#E8E6E1">
+      {% if section.settings.body != blank %}
+        {{ section.settings.body }}
+      {% else %}
+        <h2 style="font-family:var(--font-display);font-size:48px;color:var(--loam-black);margin-bottom:24px;letter-spacing:.02em">Where we came from</h2>
+        <p>Loam Co. started with two mates, a van, and a batch of jerseys we had made to wear ourselves. We were tired of paying £180 for a jersey that cost £18 to make — the rest going to brand equity we didn't care about.</p>
+        <p>We ride the South Wales Valleys. We wanted kit that could handle everything from seven-hour epics to after-work laps — technical enough for the descents, comfortable enough to grab a pint in afterwards. And we wanted it priced so that riders at every level could afford the good stuff.</p>
+
+        <h2 style="font-family:var(--font-display);font-size:48px;color:var(--loam-black);margin:48px 0 24px;letter-spacing:.02em">What we stand for</h2>
+        <p><strong>No prestige tax.</strong> Every Loam Co. piece is priced on what it costs to make well, not on what the market will bear. We use the same fabric suppliers as brands charging twice as much. The difference is we don't have a marketing budget the size of a professional team.</p>
+        <p><strong>Trail-tested first.</strong> Nothing ships until it has been ridden. Our test riders log real miles in real conditions — mud, rain, dust, heat — before anything hits the store. If it fails, it goes back to the drawing board.</p>
+        <p><strong>Sustainability without the sermon.</strong> We use recycled fabrics where performance allows, ship plastic-free, and never overstock. No seasonal clearance mountains. No fast fashion.</p>
+
+        <h2 style="font-family:var(--font-display);font-size:48px;color:var(--loam-black);margin:48px 0 24px;letter-spacing:.02em">Built for riders, run by riders</h2>
+        <p>We're a small team. Everyone here rides. Every decision — fabric weight, cut, colourway, price — gets argued over by people who will wear the result on the trails that weekend. That's not a marketing line. It's just how we work.</p>
+        <p>If you've got questions, thoughts, or just want to talk bikes — <a href="/pages/contact" style="color:var(--loam-black);font-weight:600">get in touch</a>. We actually read the emails.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Values strip -->
+  <div style="background:var(--loam-black);padding:64px var(--space-6)">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
+      <div>
+        <div style="font-family:var(--font-display);font-size:56px;color:var(--loam-neon);line-height:1;margin-bottom:12px">01</div>
+        <div style="font-family:var(--font-narrow);font-weight:700;letter-spacing:.15em;font-size:13px;color:var(--loam-white);margin-bottom:8px">TRAIL TESTED</div>
+        <div style="font-size:14px;color:var(--loam-bone);line-height:1.55">Real miles in real conditions before anything ships.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:56px;color:var(--loam-neon);line-height:1;margin-bottom:12px">02</div>
+        <div style="font-family:var(--font-narrow);font-weight:700;letter-spacing:.15em;font-size:13px;color:var(--loam-white);margin-bottom:8px">HONEST PRICING</div>
+        <div style="font-size:14px;color:var(--loam-bone);line-height:1.55">Priced on what it costs to make well, nothing else.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:56px;color:var(--loam-neon);line-height:1;margin-bottom:12px">03</div>
+        <div style="font-family:var(--font-narrow);font-weight:700;letter-spacing:.15em;font-size:13px;color:var(--loam-white);margin-bottom:8px">RIDER OWNED</div>
+        <div style="font-size:14px;color:var(--loam-bone);line-height:1.55">Every decision made by people who will wear the result.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:56px;color:var(--loam-neon);line-height:1;margin-bottom:12px">04</div>
+        <div style="font-family:var(--font-narrow);font-weight:700;letter-spacing:.15em;font-size:13px;color:var(--loam-white);margin-bottom:8px">PLASTIC FREE</div>
+        <div style="font-size:14px;color:var(--loam-bone);line-height:1.55">Recycled fabrics, plastic-free packaging, no overstock.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    { "type": "text", "id": "intro", "label": "Intro paragraph" },
+    { "type": "richtext", "id": "body", "label": "Story body (leave blank for default content)" }
+  ],
+  "presets": [{ "name": "Our Story" }]
+}
+{% endschema %}

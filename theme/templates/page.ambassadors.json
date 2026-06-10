@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "ambassadors-hero": {
+      "type": "ambassadors-hero",
+      "settings": {}
+    },
+    "how-it-works": {
+      "type": "how-it-works",
+      "settings": {}
+    },
+    "apply-form": {
+      "type": "apply-form",
+      "settings": {
+        "goaffpro_url": "https://loam-co-2.goaffpro.com/",
+        "goaffpro_login_url": "https://portal.goaffpro.com"
+      }
+    }
+  },
+  "order": [
+    "ambassadors-hero",
+    "how-it-works",
+    "apply-form"
+  ]
+}
