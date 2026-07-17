@@ -192,8 +192,12 @@
       const isOpen = item.classList.contains('is-open');
       /* Close all */
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-open'));
+      document.querySelectorAll('.faq-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
       /* Toggle current */
-      if (!isOpen) item.classList.add('is-open');
+      if (!isOpen) {
+        item.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 
