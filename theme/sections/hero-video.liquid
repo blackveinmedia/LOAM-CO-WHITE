@@ -1,5 +1,6 @@
 {% if section.settings.show_section != false %}
 <section class="hero-video" aria-label="Hero banner">
+  <h1 class="visually-hidden">{{ section.settings.seo_heading | default: 'Loam Co. — Mountain Bike Clothing & Casual Ride Wear, Built in the UK' }}</h1>
   {% if section.settings.video_url != blank %}
     <video class="hero-video__bg-img" src="{{ section.settings.video_url }}" autoplay muted loop playsinline aria-hidden="true"></video>
   {% elsif section.settings.background_image != blank %}
@@ -35,6 +36,13 @@
   "name": "Hero Banner",
   "settings": [
     { "type": "checkbox", "id": "show_section", "label": "Show section", "default": true },
+    {
+      "type": "text",
+      "id": "seo_heading",
+      "label": "SEO heading (hidden)",
+      "info": "Invisible H1 for search engines. Keep it keyword-rich.",
+      "default": "Loam Co. — Mountain Bike Clothing & Casual Ride Wear, Built in the UK"
+    },
     {
       "type": "text",
       "id": "video_url",

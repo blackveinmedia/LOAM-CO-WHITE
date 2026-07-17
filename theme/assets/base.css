@@ -413,7 +413,7 @@ ul { list-style: none; }
 
 /* ── Section: Shop Collection ────────────────────────────────────────────── */
 .section-shop {
-  background: var(--loam-black); padding: 64px 48px;
+  background: var(--loam-black); padding: 80px 48px;
   border-bottom: var(--bw) solid var(--loam-charcoal);
 }
 .section-shop__header {
@@ -430,7 +430,7 @@ ul { list-style: none; }
 /* ── Section: About Us ───────────────────────────────────────────────────── */
 .section-about {
   background: var(--loam-white); color: var(--loam-black);
-  padding: 72px 48px; border-bottom: var(--bw-slab) solid var(--loam-black);
+  padding: 80px 48px; border-bottom: var(--bw-slab) solid var(--loam-black);
 }
 .section-about__inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: flex-start; }
 .section-about__heading {
@@ -443,7 +443,7 @@ ul { list-style: none; }
 
 /* ── Section: Why Riders ─────────────────────────────────────────────────── */
 .section-why {
-  background: var(--loam-black); padding: 64px 48px;
+  background: var(--loam-black); padding: 80px 48px;
   border-bottom: var(--bw) solid var(--loam-charcoal);
 }
 .section-why__header { margin-bottom: 56px; }
@@ -467,7 +467,7 @@ ul { list-style: none; }
 
 /* ── Section: Journal ────────────────────────────────────────────────────── */
 .section-journal {
-  background: var(--loam-black); padding: 64px 48px;
+  background: var(--loam-black); padding: 80px 48px;
   border-bottom: var(--bw) solid var(--loam-charcoal);
 }
 .section-journal__header {
@@ -500,7 +500,7 @@ ul { list-style: none; }
 
 /* ── Section: Reviews ────────────────────────────────────────────────────── */
 .section-reviews {
-  background: var(--loam-black); padding: 64px 48px;
+  background: var(--loam-black); padding: 80px 48px;
   border-bottom: var(--bw) solid var(--loam-charcoal);
 }
 .section-reviews__heading {
@@ -522,7 +522,7 @@ ul { list-style: none; }
 /* ── Section: Newsletter ─────────────────────────────────────────────────── */
 .section-newsletter {
   background: var(--loam-neon); color: #0A0A0A;
-  padding: 72px 48px; border-bottom: var(--bw-slab) solid #0A0A0A;
+  padding: 80px 48px; border-bottom: var(--bw-slab) solid #0A0A0A;
 }
 .section-newsletter__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .section-newsletter__eyebrow {
@@ -559,7 +559,7 @@ ul { list-style: none; }
 
 /* ── Section: Ambassador CTA ─────────────────────────────────────────────── */
 .section-ambassador {
-  background: var(--loam-black); padding: 72px 48px;
+  background: var(--loam-black); padding: 80px 48px;
   border-bottom: var(--bw) solid var(--loam-charcoal);
   border-top: var(--bw) solid var(--loam-neon);
 }
@@ -662,7 +662,7 @@ textarea.field-input { resize: vertical; }
   font-size: 11px; letter-spacing: 0.16em; color: var(--loam-ash);
 }
 
-.section-how { background: var(--loam-black); padding: 64px 48px; border-bottom: var(--bw) solid var(--loam-charcoal); }
+.section-how { background: var(--loam-black); padding: 80px 48px; border-bottom: var(--bw) solid var(--loam-charcoal); }
 .section-how__heading { font-family: var(--font-display); text-transform: uppercase; font-size: 52px; line-height: 0.95; color: var(--loam-white); margin-bottom: 36px; }
 .section-how__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
 .section-how__item { padding: 8px 22px 8px 0; border-right: 1px solid var(--loam-charcoal); }
@@ -671,7 +671,7 @@ textarea.field-input { resize: vertical; }
 .section-how__title { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.16em; color: var(--loam-white); margin-top: 16px; }
 .section-how__desc { font-size: 13px; color: var(--loam-ash); margin-top: 10px; line-height: 1.5; }
 
-.section-commission { background: var(--loam-white); color: var(--loam-black); padding: 72px 48px; border-top: var(--bw-slab) solid var(--loam-black); border-bottom: var(--bw-slab) solid var(--loam-black); }
+.section-commission { background: var(--loam-white); color: var(--loam-black); padding: 80px 48px; border-top: var(--bw-slab) solid var(--loam-black); border-bottom: var(--bw-slab) solid var(--loam-black); }
 .section-commission__heading { font-family: var(--font-display); text-transform: uppercase; font-size: 60px; line-height: 0.92; color: var(--loam-black); margin-bottom: 36px; }
 .commission-table { border: var(--bw) solid var(--loam-black); width: 100%; }
 .commission-table__head { display: grid; grid-template-columns: 1.2fr 1.4fr 1fr 1fr 2fr; background: var(--loam-black); }
@@ -683,7 +683,7 @@ textarea.field-input { resize: vertical; }
 .commission-badge { background: var(--loam-neon); color: #0A0A0A; padding: 6px 10px; font-family: var(--font-mono); font-weight: 700; font-size: 14px; display: inline-block; }
 .commission-table__note { font-family: var(--font-mono); font-size: 11px; color: var(--loam-graphite); margin-top: 18px; letter-spacing: 0.04em; }
 
-.section-faqs { background: var(--loam-black); padding: 72px 48px; border-bottom: var(--bw) solid var(--loam-charcoal); }
+.section-faqs { background: var(--loam-black); padding: 80px 48px; border-bottom: var(--bw) solid var(--loam-charcoal); }
 .section-faqs__inner { display: grid; grid-template-columns: 1fr 2fr; gap: 56px; align-items: flex-start; }
 .section-faqs__heading { font-family: var(--font-display); text-transform: uppercase; font-size: 56px; line-height: 0.92; color: var(--loam-white); }
 
@@ -700,7 +700,7 @@ textarea.field-input { resize: vertical; }
 .faq-answer { padding-bottom: 20px; color: var(--loam-white); font-size: 14px; line-height: 1.6; max-width: 720px; display: none; }
 .faq-item.is-open .faq-answer { display: block; }
 
-.section-apply { background: var(--loam-black); padding: 72px 48px; border-bottom: var(--bw) solid var(--loam-charcoal); border-top: var(--bw) solid var(--loam-neon); }
+.section-apply { background: var(--loam-black); padding: 80px 48px; border-bottom: var(--bw) solid var(--loam-charcoal); border-top: var(--bw) solid var(--loam-neon); }
 .section-apply__inner { max-width: 880px; margin: 0 auto; }
 .section-apply__heading { font-family: var(--font-display); text-transform: uppercase; font-size: 64px; line-height: 0.9; color: var(--loam-white); }
 
@@ -891,6 +891,17 @@ textarea.field-input { resize: vertical; }
   .section-amb-hero, .section-how, .section-commission, .section-faqs,
   .section-apply, .collection-page, .product-page, .cart-page,
   .site-footer { padding-left: 20px; padding-right: 20px; }
+  .section-shop, .section-about, .section-why, .section-journal,
+  .section-reviews, .section-ambassador, .section-newsletter,
+  .section-how, .section-commission, .section-faqs,
+  .section-apply { padding-top: 48px; padding-bottom: 48px; }
+  .section-amb-hero { padding-top: 56px; padding-bottom: 40px; }
+  .section-why__grid,
+  .section-how__grid { grid-template-columns: 1fr; }
+  .section-why__item,
+  .section-how__item { padding: 20px 0; border-right: 0; border-bottom: 1px solid var(--loam-charcoal); }
+  .section-why__item:last-child,
+  .section-how__item:last-child { border-bottom: 0; }
   .section-shop__grid,
   .section-journal__grid,
   .section-reviews__grid,
