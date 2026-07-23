@@ -9,6 +9,8 @@
 {%- endfor -%}
 
 <div class="product-page">
+
+  <!-- ══ Buy area: gallery + purchase controls ══ -->
   <div class="product-page__inner">
     <!-- Gallery -->
     <div class="product-page__gallery">
@@ -18,9 +20,7 @@
             id="product-main-img"
             src="{{ product.featured_image | image_url: width: 1200 }}"
             alt="{{ product.featured_image.alt | default: product.title | escape }}"
-            width="1200" height="1200"
-            loading="eager"
-          >
+            width="1200" height="1200" loading="eager">
         {%- else -%}
           <div class="product-card__placeholder" style="height:100%;display:flex;align-items:center;justify-content:center">
             {{ product.title | upcase }} · IMAGE
@@ -31,22 +31,15 @@
       {%- if product.images.size > 1 -%}
         <div class="product-page__thumbs">
           {%- for image in product.images limit: 4 -%}
-            <div
-              class="product-page__thumb{% if forloop.first %} is-active{% endif %}"
-              data-src="{{ image | image_url: width: 1200 }}"
-            >
-              <img
-                src="{{ image | image_url: width: 300 }}"
-                alt="{{ image.alt | default: product.title | escape }}"
-                width="300" height="300" loading="lazy"
-              >
+            <div class="product-page__thumb{% if forloop.first %} is-active{% endif %}" data-src="{{ image | image_url: width: 1200 }}">
+              <img src="{{ image | image_url: width: 300 }}" alt="{{ image.alt | default: product.title | escape }}" width="300" height="300" loading="lazy">
             </div>
           {%- endfor -%}
         </div>
       {%- endif -%}
     </div>
 
-    <!-- Info -->
+    <!-- Purchase controls (kept above the fold) -->
     <div class="product-page__info">
       {%- for collection in product.collections limit: 1 -%}
         <p class="eyebrow" style="margin-bottom:12px">{{ collection.title }}</p>
@@ -71,10 +64,6 @@
         <p class="pdp-lowstock">Only {{ current_variant.inventory_quantity }} left — don't sleep on it</p>
       {%- endif -%}
 
-      {%- if product.description != blank -%}
-        <div class="product-page__desc">{{ product.description }}</div>
-      {%- endif -%}
-
       {%- unless product.has_only_default_variant -%}
         {%- for option in product.options_with_values -%}
           <div class="variant-selector">
@@ -92,7 +81,6 @@
                   if current_variant.options[option_index] == value
                     assign is_selected = true
                   endif
-
                   assign found_variant = nil
                   for variant in product.variants
                     if variant.options[option_index] == value
@@ -106,8 +94,7 @@
                   data-variant-id="{% if found_variant %}{{ found_variant.id }}{% endif %}"
                   data-price="{% if found_variant %}{{ found_variant.price }}{% endif %}"
                   data-compare-price="{% if found_variant %}{{ found_variant.compare_at_price }}{% endif %}"
-                  data-available="{% if found_variant %}{{ found_variant.available }}{% else %}false{% endif %}"
-                >
+                  data-available="{% if found_variant %}{{ found_variant.available }}{% else %}false{% endif %}">
                   {{ value }}
                 </button>
               {%- endfor -%}
@@ -121,63 +108,102 @@
       {%- endunless -%}
 
       {%- if current_variant.available -%}
-        <button
-          class="product-add-to-cart"
-          data-add-to-cart
-          data-variant-id="{{ current_variant.id }}"
-        >
-          ADD TO CART
-        </button>
+        <button class="product-add-to-cart" data-add-to-cart data-variant-id="{{ current_variant.id }}">ADD TO CART</button>
       {%- else -%}
         <button class="product-add-to-cart" disabled>SOLD OUT</button>
       {%- endif -%}
 
-      <!-- Editable blocks (theme editor) -->
-      <div class="pdp-blocks">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-
-            {%- when 'feature' -%}
-              <div class="pdp-feature" {{ block.shopify_attributes }}>
-                <span class="pdp-feature__icon">{% render 'pdp-icon', name: block.settings.icon %}</span>
-                <div class="pdp-feature__body">
-                  {%- if block.settings.title != blank -%}<span class="pdp-feature__title">{{ block.settings.title }}</span> {% endif -%}
-                  <span class="pdp-feature__text">{{ block.settings.text }}</span>
+      {%- comment -%} Trust badges sit directly under Add to Cart {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'trust' -%}
+          <div class="product-trust" {{ block.shopify_attributes }}>
+            {%- for i in (1..4) -%}
+              {%- assign tkey = 'text_' | append: i -%}
+              {%- assign ikey = 'icon_' | append: i -%}
+              {%- assign tval = block.settings[tkey] -%}
+              {%- if tval != blank -%}
+                <div class="product-trust__item">
+                  <span class="product-trust__icon">{% render 'pdp-icon', name: block.settings[ikey] %}</span>
+                  {{ tval }}
                 </div>
-              </div>
-
-            {%- when 'trust' -%}
-              <div class="product-trust" {{ block.shopify_attributes }}>
-                {%- for i in (1..4) -%}
-                  {%- assign tkey = 'text_' | append: i -%}
-                  {%- assign ikey = 'icon_' | append: i -%}
-                  {%- assign tval = block.settings[tkey] -%}
-                  {%- if tval != blank -%}
-                    <div class="product-trust__item">
-                      <span class="product-trust__icon">{% render 'pdp-icon', name: block.settings[ikey] %}</span>
-                      {{ tval }}
-                    </div>
-                  {%- endif -%}
-                {%- endfor -%}
-              </div>
-
-            {%- when 'collapsible' -%}
-              <div class="pdp-collapsible" {{ block.shopify_attributes }}>
-                <button class="pdp-collapsible__toggle" type="button" aria-expanded="false">
-                  <span>{{ block.settings.heading }}</span>
-                  <span class="pdp-collapsible__icon" aria-hidden="true">+</span>
-                </button>
-                <div class="pdp-collapsible__body">{{ block.settings.content }}</div>
-              </div>
-
-            {%- when 'text' -%}
-              <div class="pdp-note" {{ block.shopify_attributes }}>{{ block.settings.content }}</div>
-
-          {%- endcase -%}
-        {%- endfor -%}
-      </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
+
+  <!-- ══ Details: description, features, media, collapsibles ══ -->
+  <div class="product-page__details">
+    {%- if product.description != blank -%}
+      <div class="pdp-details__block">
+        <h2 class="pdp-details__heading">Description</h2>
+        <div class="product-page__desc">{{ product.description }}</div>
+      </div>
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+
+        {%- when 'feature' -%}
+          <div class="pdp-feature" {{ block.shopify_attributes }}>
+            <span class="pdp-feature__icon">{% render 'pdp-icon', name: block.settings.icon %}</span>
+            <div class="pdp-feature__body">
+              {%- if block.settings.title != blank -%}<span class="pdp-feature__title">{{ block.settings.title }}</span> {% endif -%}
+              <span class="pdp-feature__text">{{ block.settings.text }}</span>
+            </div>
+          </div>
+
+        {%- when 'media' -%}
+          {%- if block.settings.video_url != blank or block.settings.image != blank -%}
+            <div class="pdp-media" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}<h2 class="pdp-details__heading">{{ block.settings.heading }}</h2>{%- endif -%}
+              {%- if block.settings.video_url != blank -%}
+                <video class="pdp-media__el" src="{{ block.settings.video_url }}" autoplay muted loop playsinline></video>
+              {%- else -%}
+                <img class="pdp-media__el" src="{{ block.settings.image | image_url: width: 1400 }}" alt="{{ block.settings.image.alt | default: product.title | escape }}" loading="lazy">
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+        {%- when 'collapsible' -%}
+          <div class="pdp-collapsible" {{ block.shopify_attributes }}>
+            <button class="pdp-collapsible__toggle" type="button" aria-expanded="false">
+              <span>{{ block.settings.heading }}</span>
+              <span class="pdp-collapsible__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pdp-collapsible__body">{{ block.settings.content }}</div>
+          </div>
+
+        {%- when 'text' -%}
+          <div class="pdp-note" {{ block.shopify_attributes }}>{{ block.settings.content }}</div>
+
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+
+  <!-- ══ People also bought ══ -->
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'recommendations' -%}
+      {%- assign reco = collections[block.settings.collection] -%}
+      {%- if reco != blank and reco.products_count > 0 -%}
+        <div class="pdp-reco" {{ block.shopify_attributes }}>
+          <h2 class="pdp-reco__heading">{{ block.settings.heading | default: 'People also bought' }}</h2>
+          <div class="pdp-reco__grid">
+            {%- assign shown = 0 -%}
+            {%- for p in reco.products -%}
+              {%- if p.id != product.id -%}
+                {% render 'product-card', card_product: p %}
+                {%- assign shown = shown | plus: 1 -%}
+                {%- if shown >= block.settings.products_to_show -%}{%- break -%}{%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
 
   {%- if section.settings.show_sticky_atc != false -%}
     <div class="sticky-atc" aria-hidden="false">
@@ -210,10 +236,7 @@
 {
   "name": "Product Main",
   "settings": [
-    {
-      "type": "header",
-      "content": "Options"
-    },
+    { "type": "header", "content": "Options" },
     { "type": "checkbox", "id": "show_sticky_atc", "label": "Sticky add-to-cart bar (mobile)", "default": true },
     { "type": "checkbox", "id": "show_low_stock", "label": "Show low-stock warning", "default": true },
     { "type": "range", "id": "low_stock_threshold", "label": "Low-stock threshold", "min": 1, "max": 25, "step": 1, "default": 6, "info": "Show the warning when stock is at or below this number (needs inventory tracking on)." }
@@ -223,20 +246,8 @@
       "type": "feature",
       "name": "Feature",
       "settings": [
-        {
-          "type": "select", "id": "icon", "label": "Icon", "default": "bolt",
-          "options": [
-            { "value": "bolt", "label": "Lightning" },
-            { "value": "leaf", "label": "Leaf" },
-            { "value": "shield", "label": "Shield" },
-            { "value": "star", "label": "Star" },
-            { "value": "shipping", "label": "Delivery" },
-            { "value": "returns", "label": "Returns" },
-            { "value": "lock", "label": "Lock" },
-            { "value": "tag", "label": "Tag" },
-            { "value": "check", "label": "Check" }
-          ]
-        },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "bolt", "options": [
+          { "value": "bolt", "label": "Lightning" }, { "value": "leaf", "label": "Leaf" }, { "value": "shield", "label": "Shield" }, { "value": "star", "label": "Star" }, { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "lock", "label": "Lock" }, { "value": "tag", "label": "Tag" }, { "value": "check", "label": "Check" } ] },
         { "type": "text", "id": "title", "label": "Title", "default": "FLOW" },
         { "type": "text", "id": "text", "label": "Text", "default": "Superlight fabric for maximum airflow and breathability." }
       ]
@@ -247,6 +258,15 @@
       "settings": [
         { "type": "text", "id": "heading", "label": "Heading", "default": "Shipping & returns" },
         { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Free UK shipping over £50. 30-day easy returns.</p>" }
+      ]
+    },
+    {
+      "type": "media",
+      "name": "Video / image",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading (optional)" },
+        { "type": "text", "id": "video_url", "label": "Video URL (.mp4)", "info": "Upload to Content → Files and paste the URL. Takes priority over the image." },
+        { "type": "image_picker", "id": "image", "label": "Image" }
       ]
     },
     {
@@ -265,18 +285,24 @@
       "name": "Trust badges",
       "limit": 1,
       "settings": [
-        { "type": "select", "id": "icon_1", "label": "Icon 1", "default": "shipping", "options": [
-          { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
+        { "type": "select", "id": "icon_1", "label": "Icon 1", "default": "shipping", "options": [ { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
         { "type": "text", "id": "text_1", "label": "Text 1", "default": "Free UK shipping over £50" },
-        { "type": "select", "id": "icon_2", "label": "Icon 2", "default": "returns", "options": [
-          { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
+        { "type": "select", "id": "icon_2", "label": "Icon 2", "default": "returns", "options": [ { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
         { "type": "text", "id": "text_2", "label": "Text 2", "default": "30-day easy returns" },
-        { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "shield", "options": [
-          { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
+        { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "shield", "options": [ { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
         { "type": "text", "id": "text_3", "label": "Text 3", "default": "40% crash replacement" },
-        { "type": "select", "id": "icon_4", "label": "Icon 4", "default": "lock", "options": [
-          { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
+        { "type": "select", "id": "icon_4", "label": "Icon 4", "default": "lock", "options": [ { "value": "shipping", "label": "Delivery" }, { "value": "returns", "label": "Returns" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "leaf", "label": "Leaf" }, { "value": "star", "label": "Star" }, { "value": "tag", "label": "Tag" }, { "value": "bolt", "label": "Lightning" }, { "value": "check", "label": "Check" } ] },
         { "type": "text", "id": "text_4", "label": "Text 4", "default": "Secure checkout" }
+      ]
+    },
+    {
+      "type": "recommendations",
+      "name": "People also bought",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "People also bought" },
+        { "type": "collection", "id": "collection", "label": "Collection to show", "info": "Pick the collection these recommendations come from. The current product is skipped automatically." },
+        { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 8, "step": 1, "default": 4 }
       ]
     },
     {
@@ -293,9 +319,10 @@
       "blocks": [
         { "type": "trust" },
         { "type": "size_guide" },
-        { "type": "collapsible", "settings": { "heading": "Shipping & returns", "content": "<p>Free UK standard shipping on orders over £50 (£3.99 under). Express and next-day options at checkout. 30-day easy returns — see our Returns page for full details.</p>" } },
-        { "type": "collapsible", "settings": { "heading": "Crash replacement", "content": "<p>Trashed your kit in a crash? We'll replace it at 40% off within a year of purchase. Submit a claim with a photo and your order number.</p>" } },
-        { "type": "collapsible", "settings": { "heading": "Care", "content": "<p>Machine wash cold (30°C), no fabric softener, hang dry. Mud washes out — that's the point.</p>" } }
+        { "type": "collapsible", "settings": { "heading": "Shipping & returns", "content": "<p>Free UK standard shipping on orders over £50 (£3.99 under). Express and next-day options at checkout. 30-day easy returns.</p>" } },
+        { "type": "collapsible", "settings": { "heading": "Crash replacement", "content": "<p>Trashed your kit in a crash? We'll replace it at 40% off within a year of purchase.</p>" } },
+        { "type": "collapsible", "settings": { "heading": "Care", "content": "<p>Machine wash cold (30°C), no fabric softener, hang dry.</p>" } },
+        { "type": "recommendations" }
       ]
     }
   ]

@@ -920,6 +920,24 @@ textarea.field-input { resize: vertical; }
 .pdp-sizeguide-content th, .pdp-sizeguide-content td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
 .pdp-sizeguide-content p { margin-bottom: 12px; }
 
+/* ── Product page: details + recommendations zones ───────────────────────── */
+.product-page__details { max-width: 900px; margin: 56px auto 0; }
+.pdp-details__block { margin-bottom: 40px; }
+.pdp-details__heading {
+  font-family: var(--font-display); font-size: 32px; text-transform: uppercase;
+  color: var(--loam-white); margin-bottom: 16px; letter-spacing: 0.02em;
+}
+.product-page__details .product-page__desc { margin-top: 0; }
+.pdp-media { margin: 40px 0; }
+.pdp-media__el { width: 100%; height: auto; display: block; border: 2px solid var(--loam-charcoal); }
+
+.pdp-reco { max-width: 1200px; margin: 72px auto 0; border-top: var(--bw) solid var(--loam-charcoal); padding-top: 48px; }
+.pdp-reco__heading {
+  font-family: var(--font-display); font-size: 44px; text-transform: uppercase;
+  color: var(--loam-white); margin-bottom: 28px; letter-spacing: 0.02em;
+}
+.pdp-reco__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
 /* ── Page: Contact ───────────────────────────────────────────────────────── */
 .page-contact__layout {
   display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start;
@@ -1013,7 +1031,8 @@ textarea.field-input { resize: vertical; }
 @media (max-width: 1024px) {
   .section-shop__grid,
   .section-why__grid,
-  .section-how__grid { grid-template-columns: repeat(2, 1fr); }
+  .section-how__grid,
+  .pdp-reco__grid { grid-template-columns: repeat(2, 1fr); }
   .section-shop__grid .product-card:nth-child(n+3),
   .section-why__item:nth-child(2n),
   .section-how__item:nth-child(2n) { border-right: 0; }
@@ -1073,6 +1092,7 @@ textarea.field-input { resize: vertical; }
   .form-grid-2 { grid-template-columns: 1fr; }
   .cart-drawer { width: 100vw; }
   .product-trust { grid-template-columns: 1fr; }
+  .pdp-reco__grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
