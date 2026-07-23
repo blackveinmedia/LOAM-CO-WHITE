@@ -64,7 +64,7 @@
             {% if part.is_link %}
               <a href="{{ part.url }}" style="font-family:var(--font-narrow);font-size:12px;font-weight:700;letter-spacing:.18em;padding:12px 16px;border:2px solid rgba(0,0,0,0.15);color:var(--loam-white);text-decoration:none">{{ part.title }}</a>
             {% elsif part.title == paginate.current_page %}
-              <span style="font-family:var(--font-narrow);font-size:12px;font-weight:700;letter-spacing:.18em;padding:12px 16px;border:2px solid var(--loam-neon);color:var(--loam-neon)">{{ part.title }}</span>
+              <span style="font-family:var(--font-narrow);font-size:12px;font-weight:700;letter-spacing:.18em;padding:12px 16px;border:2px solid var(--loam-neon);background:var(--loam-neon);color:#0A0A0A">{{ part.title }}</span>
             {% else %}
               <span style="font-family:var(--font-narrow);font-size:12px;color:var(--loam-ash);padding:12px 16px">{{ part.title }}</span>
             {% endif %}

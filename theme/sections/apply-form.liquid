@@ -16,18 +16,18 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
         <p style="font-size:12px;color:var(--loam-ash);margin-top:16px;font-family:var(--font-narrow);letter-spacing:.1em">
-          Already an ambassador? <a href="{{ section.settings.goaffpro_login_url | default: 'https://portal.goaffpro.com' }}" target="_blank" rel="noopener" style="color:var(--loam-neon);text-decoration:none">LOG IN TO YOUR DASHBOARD →</a>
+          Already an ambassador? <a href="{{ section.settings.goaffpro_login_url | default: 'https://portal.goaffpro.com' }}" target="_blank" rel="noopener" style="color:#0A0A0A;text-decoration:none">LOG IN TO YOUR DASHBOARD →</a>
         </p>
       </div>
 
       <!-- What you get panel -->
       <div style="background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.1);padding:40px;max-width:720px;margin:0 auto">
-        <p style="font-family:var(--font-narrow);font-weight:700;letter-spacing:.18em;font-size:12px;color:var(--loam-neon);margin-bottom:24px">WHAT YOU GET ON DAY ONE</p>
+        <p style="font-family:var(--font-narrow);font-weight:700;letter-spacing:.18em;font-size:12px;color:#0A0A0A;margin-bottom:24px">WHAT YOU GET ON DAY ONE</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
           {% assign perks = "Unique tracking link + discount code|Real-time sales dashboard|Monthly bank transfer payouts|15% base commission from first sale|Free kit for top performers|First look at every new drop" | split: "|" %}
           {% for perk in perks %}
             <div style="display:flex;gap:10px;align-items:flex-start">
-              <span style="color:var(--loam-neon);font-weight:700;flex-shrink:0">+</span>
+              <span style="color:#0A0A0A;font-weight:700;flex-shrink:0">+</span>
               <span style="font-size:14px;color:#0A0A0A;line-height:1.4">{{ perk }}</span>
             </div>
           {% endfor %}
@@ -43,7 +43,7 @@
       </p>
 
       <div style="background:rgba(218,238,1,0.1);border:1px solid var(--loam-neon);padding:20px;margin-bottom:36px;max-width:600px">
-        <p style="font-family:var(--font-narrow);font-size:13px;color:var(--loam-neon);font-weight:700;letter-spacing:.12em;margin-bottom:4px">INSTALL GOAFFPRO</p>
+        <p style="font-family:var(--font-narrow);font-size:13px;color:#0A0A0A;font-weight:700;letter-spacing:.12em;margin-bottom:4px">INSTALL GOAFFPRO</p>
         <p style="font-size:13px;color:#0A0A0A">Add your GoAffPro portal URL in the theme editor to activate the ambassador sign-up flow. Until then, use this contact form.</p>
       </div>
 

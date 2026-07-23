@@ -41,7 +41,7 @@
                   type="number" name="quantity" value="{{ item.quantity }}" min="0"
                   style="width:60px;background:transparent;border:1px solid var(--loam-charcoal);color:var(--loam-white);padding:6px 10px;font-family:var(--font-mono);font-size:14px"
                 >
-                <button type="submit" style="font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.14em;background:none;border:0;color:var(--loam-neon);cursor:pointer">UPDATE</button>
+                <button type="submit" style="font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.14em;background:none;border:0;color:#0A0A0A;cursor:pointer">UPDATE</button>
               </form>
               <form action="{{ routes.cart_change_url }}" method="post" style="margin-top:6px">
                 <input type="hidden" name="line" value="{{ forloop.index }}">

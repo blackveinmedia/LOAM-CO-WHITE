@@ -20,7 +20,7 @@
           {%- if part.is_link -%}
             <a href="{{ part.url }}" style="font-family:var(--font-mono);font-size:13px;padding:10px 16px;border:2px solid var(--loam-charcoal);color:var(--loam-white);text-decoration:none">{{ part.title }}</a>
           {%- else -%}
-            <span style="font-family:var(--font-mono);font-size:13px;padding:10px 16px;border:2px solid var(--loam-neon);color:var(--loam-neon)">{{ part.title }}</span>
+            <span style="font-family:var(--font-mono);font-size:13px;padding:10px 16px;border:2px solid var(--loam-neon);background:var(--loam-neon);color:#0A0A0A">{{ part.title }}</span>
           {%- endif -%}
         {%- endfor -%}
       </div>
