@@ -19,11 +19,11 @@
   <div class="hero-video__scrim" aria-hidden="true"></div>
 
   <div class="hero-video__stamp">
-    <span class="eyebrow eyebrow--neon">{{ section.settings.stamp | default: 'UK-OWNED · RIDER-RUN' }}</span>
+    <span class="eyebrow eyebrow--neon">{{ section.settings.stamp | default: 'RIDER OWNED · RIDER RUN' }}</span>
   </div>
 
   <div class="hero-video__content">
-    <h1 class="hero-video__headline">{{ section.settings.headline | default: 'Rider-owned UK mountain bike clothing.' }}</h1>
+    <h1 class="hero-video__headline">{{ section.settings.headline | default: 'Rider-owned mountain bike clothing.' }}</h1>
     <p class="hero-video__subtext">{{ section.settings.subtext | default: 'Priced like we ride it ourselves, because we do.' }}</p>
     <div class="hero-video__cta-row">
       <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary">{{ section.settings.cta_label | default: 'DISCOVER THE RANGE' }}</a>
@@ -47,7 +47,7 @@
   "name": "Hero Banner",
   "settings": [
     { "type": "checkbox", "id": "show_section", "label": "Show section", "default": true },
-    { "type": "text", "id": "headline", "label": "Headline (H1)", "default": "Rider-owned UK mountain bike clothing." },
+    { "type": "text", "id": "headline", "label": "Headline (H1)", "default": "Rider-owned mountain bike clothing." },
     { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Priced like we ride it ourselves, because we do." },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "DISCOVER THE RANGE" },
     { "type": "url", "id": "cta_url", "label": "Button link" },
@@ -68,7 +68,7 @@
       "type": "text",
       "id": "stamp",
       "label": "Stamp text",
-      "default": "UK-OWNED · RIDER-RUN"
+      "default": "RIDER OWNED · RIDER RUN"
     }
   ],
   "presets": [{ "name": "Hero Banner" }]

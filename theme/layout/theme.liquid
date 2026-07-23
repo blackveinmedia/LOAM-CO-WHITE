@@ -23,8 +23,8 @@
       assign seo_desc = collection.description | strip_html | default: shop.description | truncate: 160
       assign seo_image = collection.image | image_url: width: 1200
     elsif request.page_type == 'index'
-      assign seo_title = shop.name | append: ' | Mountain Bike Clothing & Casual Ride Wear UK'
-      assign seo_desc = shop.description | default: 'Rider-owned UK mountain bike clothing. Trail-tested MTB jerseys, tees & casual ride wear with no prestige tax. Free UK delivery over £50. 40% crash replacement.'
+      assign seo_title = shop.name | append: ' | Mountain Bike Clothing & Ride Wear'
+      assign seo_desc = shop.description | default: 'Rider-owned mountain bike clothing. Trail-tested MTB jerseys, tees and ride wear, made to be worn out. Free UK delivery over £50. 40% crash replacement.'
       assign seo_image = settings.share_image | image_url: width: 1200
     else
       assign seo_title = page_title | append: ' | ' | append: shop.name
@@ -89,7 +89,7 @@
     "name": {{ shop.name | json }},
     "url": {{ shop.url | json }},
     "logo": "{{ 'loam-logo.png' | asset_url }}",
-    "description": "Rider-owned UK mountain bike clothing brand. Trail-tested MTB jerseys, tees and casual ride wear with no prestige tax.",
+    "description": "Rider-owned mountain bike clothing brand. Trail-tested MTB jerseys, tees and ride wear, made to be worn out.",
     "email": "ride.loamco@gmail.com"{% if social_array.size > 0 %},
     "sameAs": {{ social_array | json }}{% endif %}
   }

@@ -9,9 +9,8 @@
       {% if section.settings.body != blank %}
         {{ section.settings.body }}
       {% else %}
-        <p>Some brands charge you £90 for a jersey because of the badge. We don't.</p>
-        <p>Same fabric. Same factory standards. Half the price. The rest stays in your pocket.</p>
-        <p>Loam Co. is built by riders, for riders. Kit that performs on climbs, protects on descents, and looks good everywhere in between.</p>
+        <p>Loam Co. is kit for people who ride whatever's out the back door, in whatever the weather's doing. Made by riders, tested by riders, priced so you can own more than one.</p>
+        <p>Performs on the climbs. Holds up on the descents. Doesn't look daft in the pub afterwards.</p>
       {% endif %}
       <a href="{{ section.settings.button_url | default: routes.root_url | append: 'pages/about' }}" style="font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:12px;padding:12px 18px;border:2px solid #FFFFFF;color:#FFFFFF;background:transparent;text-decoration:none;display:inline-flex;align-items:center;gap:10px;margin-top:8px">
         {{ section.settings.button_label | default: 'READ OUR STORY' }}
