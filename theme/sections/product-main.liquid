@@ -107,10 +107,33 @@
         <button class="product-add-to-cart" disabled>SOLD OUT</button>
       {%- endif -%}
 
-      <p style="font-family:var(--font-mono);font-size:11px;color:var(--loam-ash);margin-top:16px;letter-spacing:.1em;text-transform:uppercase">
-        FREE SHIPPING OVER £50 · EASY RETURNS
-      </p>
+      <div class="product-trust">
+        <div class="product-trust__item">
+          <svg class="product-trust__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Free UK shipping over £50
+        </div>
+        <div class="product-trust__item">
+          <svg class="product-trust__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+          30-day easy returns
+        </div>
+        <div class="product-trust__item">
+          <svg class="product-trust__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          40% crash replacement
+        </div>
+        <div class="product-trust__item">
+          <svg class="product-trust__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Secure checkout
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="sticky-atc" aria-hidden="false">
+    <div class="sticky-atc__info">
+      <div class="sticky-atc__title">{{ product.title }}</div>
+      <div class="sticky-atc__price">{{ current_variant.price | money }}</div>
+    </div>
+    <button class="sticky-atc__btn" type="button" data-sticky-atc>{% if current_variant.available %}ADD TO CART{% else %}SOLD OUT{% endif %}</button>
   </div>
 </div>
 

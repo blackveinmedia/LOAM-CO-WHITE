@@ -1,10 +1,9 @@
 {% if section.settings.show_section != false %}
 <section class="hero-video" aria-label="Hero banner">
-  <h1 class="visually-hidden">{{ section.settings.seo_heading | default: 'Loam Co. — Mountain Bike Clothing & Casual Ride Wear, Built in the UK' }}</h1>
   {% if section.settings.video_url != blank %}
     <video class="hero-video__bg-img" src="{{ section.settings.video_url }}" autoplay muted loop playsinline aria-hidden="true"></video>
   {% elsif section.settings.background_image != blank %}
-    <img class="hero-video__bg-img" src="{{ section.settings.background_image | image_url: width: 1920 }}" alt="" loading="eager">
+    <img class="hero-video__bg-img" src="{{ section.settings.background_image | image_url: width: 1920 }}" alt="{{ section.settings.background_image.alt | default: 'Loam Co. mountain bike kit' | escape }}" loading="eager">
   {% else %}
     <div class="hero-video__placeholder" aria-hidden="true">
       <div class="hero-video__play-icon">
@@ -12,13 +11,26 @@
       </div>
       <div class="hero-video__placeholder-text">
         BANNER VIDEO<br>
-        <span style="color:var(--loam-graphite)">[ ATTACH .MP4 IN THEME EDITOR ]</span>
+        <span style="color:var(--loam-graphite)">[ ATTACH .MP4 OR IMAGE IN THEME EDITOR ]</span>
       </div>
     </div>
   {% endif %}
 
+  <div class="hero-video__scrim" aria-hidden="true"></div>
+
   <div class="hero-video__stamp">
     <span class="eyebrow">{{ section.settings.stamp | default: 'UK-OWNED · RIDER-RUN' }}</span>
+  </div>
+
+  <div class="hero-video__content">
+    <h1 class="hero-video__headline">{{ section.settings.headline | default: 'Kit built for the graft.' }}</h1>
+    <p class="hero-video__subtext">{{ section.settings.subtext | default: 'Rider-owned UK mountain bike clothing. No prestige tax — just trail-tested kit at an honest price.' }}</p>
+    <div class="hero-video__cta-row">
+      <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary">{{ section.settings.cta_label | default: 'SHOP THE KIT' }}</a>
+      {% if section.settings.cta2_label != blank %}
+        <a href="{{ section.settings.cta2_url | default: routes.root_url }}" class="btn btn--outline">{{ section.settings.cta2_label }}</a>
+      {% endif %}
+    </div>
   </div>
 
   <div class="hero-video__scroll" aria-hidden="true">
@@ -28,7 +40,6 @@
     </svg>
   </div>
 </section>
-
 {% endif %}
 
 {% schema %}
@@ -36,13 +47,12 @@
   "name": "Hero Banner",
   "settings": [
     { "type": "checkbox", "id": "show_section", "label": "Show section", "default": true },
-    {
-      "type": "text",
-      "id": "seo_heading",
-      "label": "SEO heading (hidden)",
-      "info": "Invisible H1 for search engines. Keep it keyword-rich.",
-      "default": "Loam Co. — Mountain Bike Clothing & Casual Ride Wear, Built in the UK"
-    },
+    { "type": "text", "id": "headline", "label": "Headline (H1)", "default": "Kit built for the graft." },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Rider-owned UK mountain bike clothing. No prestige tax — just trail-tested kit at an honest price." },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "SHOP THE KIT" },
+    { "type": "url", "id": "cta_url", "label": "Button link" },
+    { "type": "text", "id": "cta2_label", "label": "Secondary button label (optional)" },
+    { "type": "url", "id": "cta2_url", "label": "Secondary button link" },
     {
       "type": "text",
       "id": "video_url",
@@ -52,7 +62,7 @@
     {
       "type": "image_picker",
       "id": "background_image",
-      "label": "Fallback image"
+      "label": "Background image (fallback / no video)"
     },
     {
       "type": "text",

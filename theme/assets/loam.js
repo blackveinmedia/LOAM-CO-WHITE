@@ -24,6 +24,31 @@
     return '£' + (cents / 100).toFixed(2);
   }
 
+  /* ── Free-shipping progress ──────────────────────────────────────────────── */
+  const FREE_SHIP_THRESHOLD = 5000; /* £50 in pence */
+
+  function updateShippingBar(cart) {
+    const bar = document.getElementById('cart-shipping');
+    if (!bar) return;
+    if (!cart || cart.item_count === 0) { bar.style.display = 'none'; return; }
+    bar.style.display = 'block';
+
+    const total = cart.total_price;
+    const remaining = FREE_SHIP_THRESHOLD - total;
+    const pct = Math.min(100, Math.round((total / FREE_SHIP_THRESHOLD) * 100));
+    const fill = bar.querySelector('.cart-shipping__fill');
+    const text = bar.querySelector('.cart-shipping__text');
+
+    if (fill) fill.style.width = pct + '%';
+    if (remaining > 0) {
+      bar.classList.remove('cart-shipping--met');
+      if (text) text.innerHTML = "You're <strong>" + formatMoney(remaining) + "</strong> away from free UK shipping";
+    } else {
+      bar.classList.add('cart-shipping--met');
+      if (text) text.innerHTML = "<strong>✓ Free UK shipping unlocked</strong>";
+    }
+  }
+
   async function fetchCart() {
     const res = await fetch('/cart.js');
     return res.json();
@@ -42,7 +67,8 @@
     if (!body) return;
 
     if (cart.items.length === 0) {
-      body.innerHTML = '<p class="cart-drawer__empty">Bag\'s empty. Get to it.</p>';
+      body.innerHTML = '<p class="cart-drawer__empty">Bag\'s empty. Get to it.</p>'
+        + '<a href="/collections/all" class="btn btn--primary" style="margin-top:18px">SHOP THE KIT</a>';
     } else {
       body.innerHTML = cart.items.map((item, idx) => `
         <div class="cart-item">
@@ -65,6 +91,8 @@
     if (cartTotal()) {
       cartTotal().textContent = formatMoney(cart.total_price);
     }
+
+    updateShippingBar(cart);
   }
 
   /* ── Add to cart ─────────────────────────────────────────────────────────── */
@@ -78,6 +106,12 @@
     /* Close cart */
     if (e.target.closest('[data-action="close-cart"]')) {
       closeCart();
+      return;
+    }
+
+    /* Sticky mobile add-to-cart → trigger the main add button */
+    if (e.target.closest('[data-sticky-atc]')) {
+      document.querySelector('.product-add-to-cart')?.click();
       return;
     }
 
@@ -157,6 +191,11 @@
         const available = btn.dataset.available !== 'false';
         addBtn.disabled = !available;
         addBtn.textContent = available ? 'ADD TO CART' : 'SOLD OUT';
+        const stickyBtn = document.querySelector('.sticky-atc__btn');
+        if (stickyBtn) {
+          stickyBtn.disabled = !available;
+          stickyBtn.textContent = available ? 'ADD TO CART' : 'SOLD OUT';
+        }
       }
 
       /* Update price display */
@@ -165,6 +204,8 @@
       const priceEl = document.querySelector('.product-page__price');
       const compareEl = document.querySelector('.product-page__compare-price');
       if (priceEl && price) priceEl.textContent = formatMoney(parseInt(price));
+      const stickyPrice = document.querySelector('.sticky-atc__price');
+      if (stickyPrice && price) stickyPrice.textContent = formatMoney(parseInt(price));
       if (compareEl) {
         compareEl.textContent = compare && parseInt(compare) > parseInt(price)
           ? formatMoney(parseInt(compare)) : '';
@@ -306,6 +347,7 @@
       el.textContent = cart.item_count;
       el.style.display = cart.item_count > 0 ? 'flex' : 'none';
     });
+    updateShippingBar(cart);
   }).catch(() => {});
 
 })();
