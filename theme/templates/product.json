@@ -1,1 +1,33 @@
-{"sections":{"product-main":{"type":"product-main","settings":{}},"areviews_1780487677_a4f56c":{"type":"apps","blocks":{"areviews_reviews_importer_areviews_display_reviews_C2C675":{"type":"shopify://apps/areviews-reviews-importer/blocks/AreviewsDisplayReviews/ab0ec5fe-c95b-4fd6-bfb8-db2a30d0756f","settings":{"hide_areviews_title_rating":false,"areviews_theme_font":"inherit","areviews_stars_colors":"#f3c621","areviews_write_reviews_botton_color":"#373737"}}},"block_order":["areviews_reviews_importer_areviews_display_reviews_C2C675"],"settings":{}}},"order":["product-main","areviews_1780487677_a4f56c"]}
+{
+  "sections": {
+    "product-main": {
+      "type": "product-main",
+      "blocks": {
+        "trust": { "type": "trust", "settings": {} },
+        "size_guide": { "type": "size_guide", "settings": {} },
+        "ship": { "type": "collapsible", "settings": { "heading": "Shipping & returns", "content": "<p>Free UK standard shipping on orders over £50 (£3.99 under). Express and next-day options at checkout. 30-day easy returns — see our Returns page for full details.</p>" } },
+        "crash": { "type": "collapsible", "settings": { "heading": "Crash replacement", "content": "<p>Trashed your kit in a crash? We'll replace it at 40% off within a year of purchase. Submit a claim with a photo and your order number.</p>" } },
+        "care": { "type": "collapsible", "settings": { "heading": "Care", "content": "<p>Machine wash cold (30°C), no fabric softener, hang dry. Mud washes out — that's the point.</p>" } }
+      },
+      "block_order": ["trust", "size_guide", "ship", "crash", "care"],
+      "settings": {}
+    },
+    "areviews_1780487677_a4f56c": {
+      "type": "apps",
+      "blocks": {
+        "areviews_reviews_importer_areviews_display_reviews_C2C675": {
+          "type": "shopify://apps/areviews-reviews-importer/blocks/AreviewsDisplayReviews/ab0ec5fe-c95b-4fd6-bfb8-db2a30d0756f",
+          "settings": {
+            "hide_areviews_title_rating": false,
+            "areviews_theme_font": "inherit",
+            "areviews_stars_colors": "#f3c621",
+            "areviews_write_reviews_botton_color": "#373737"
+          }
+        }
+      },
+      "block_order": ["areviews_reviews_importer_areviews_display_reviews_C2C675"],
+      "settings": {}
+    }
+  },
+  "order": ["product-main", "areviews_1780487677_a4f56c"]
+}

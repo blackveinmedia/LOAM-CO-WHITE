@@ -341,6 +341,27 @@
   document.querySelector('[data-action="close-nav"]')?.addEventListener('click', closeNav);
   mobileNavOverlay?.addEventListener('click', closeNav);
 
+  /* ── Product accordions (independent toggle) ─────────────────────────────── */
+  document.querySelectorAll('.pdp-collapsible__toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.pdp-collapsible');
+      const open = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  /* ── Size guide modal ────────────────────────────────────────────────────── */
+  const sizeGuide = document.getElementById('pdp-sizeguide');
+  if (sizeGuide) {
+    const closeSG = () => { sizeGuide.classList.remove('is-open'); document.body.style.overflow = ''; };
+    document.querySelectorAll('[data-sizeguide-open]').forEach(b =>
+      b.addEventListener('click', () => { sizeGuide.classList.add('is-open'); document.body.style.overflow = 'hidden'; })
+    );
+    sizeGuide.querySelector('[data-sizeguide-close]')?.addEventListener('click', closeSG);
+    sizeGuide.addEventListener('click', (e) => { if (e.target === sizeGuide) closeSG(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSG(); });
+  }
+
   /* ── Init: refresh cart count on page load ───────────────────────────────── */
   fetchCart().then(cart => {
     document.querySelectorAll('.cart-count').forEach(el => {
