@@ -104,7 +104,7 @@
       <p style="font-family:var(--font-narrow);font-size:11px;letter-spacing:.2em;color:var(--loam-ash);margin-bottom:12px">TAGS</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         {% for tag in article.tags %}
-          <a href="{{ blog.url }}/tagged/{{ tag | handle }}" style="font-family:var(--font-narrow);font-size:11px;font-weight:700;letter-spacing:.15em;border:1px solid rgba(0,0,0,0.15);color:var(--loam-bone);padding:6px 12px;text-decoration:none">
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}" style="font-family:var(--font-narrow);font-size:11px;font-weight:700;letter-spacing:.15em;border:1px solid rgba(0,0,0,0.15);color:#0A0A0A;padding:6px 12px;text-decoration:none">
             {{ tag | upcase }}
           </a>
         {% endfor %}

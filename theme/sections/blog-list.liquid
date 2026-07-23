@@ -8,9 +8,9 @@
         {{ blog.title | default: section.settings.heading | default: 'Blog' }}
       </h1>
       {% if blog.description != blank %}
-        <p style="font-size:17px;color:var(--loam-bone);max-width:560px;line-height:1.55">{{ blog.description }}</p>
+        <p style="font-size:17px;color:#3A3A3A;max-width:560px;line-height:1.55">{{ blog.description }}</p>
       {% else %}
-        <p style="font-size:17px;color:var(--loam-bone);max-width:560px;line-height:1.55">{{ section.settings.description | default: 'Trail tips, kit news, and riding stories from the Loam Co. crew.' }}</p>
+        <p style="font-size:17px;color:#3A3A3A;max-width:560px;line-height:1.55">{{ section.settings.description | default: 'Trail tips, kit news, and riding stories from the Loam Co. crew.' }}</p>
       {% endif %}
     </div>
   </div>
@@ -30,7 +30,7 @@
                     loading="lazy" width="800" height="533"
                     itemprop="image">
                 {% else %}
-                  <div style="background:var(--loam-graphite);height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--font-narrow);font-size:11px;letter-spacing:.2em;color:var(--loam-ash)">LOAM CO. · BLOG</div>
+                  <div style="background:var(--loam-graphite);height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--font-narrow);font-size:11px;letter-spacing:.2em;color:#FFFFFF">LOAM CO. · BLOG</div>
                 {% endif %}
               </div>
               {% if article.tags.size > 0 %}

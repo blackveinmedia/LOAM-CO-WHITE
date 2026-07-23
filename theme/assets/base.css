@@ -11,8 +11,8 @@
   --loam-black:      #FFFFFF;
   --loam-off-black:  #F0F0F0;
   --loam-charcoal:   #2E2E2E;
-  --loam-graphite:   #5A5A5A;
-  --loam-ash:        #9A9A9A;
+  --loam-graphite:   #444444;
+  --loam-ash:        #262626;
   --loam-bone:       #E8E6E1;
   --loam-white:      #0A0A0A;
 
@@ -452,8 +452,9 @@ ul { list-style: none; }
   font-size: 52px; line-height: 0.92; color: var(--loam-white);
 }
 .section-why__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-.section-why__item { padding: 32px 28px 32px 0; border-right: 1px solid var(--loam-charcoal); }
-.section-why__item:last-child { border-right: 0; }
+.section-why__item { padding: 16px 32px; border-right: 1px solid var(--loam-charcoal); }
+.section-why__item:first-child { padding-left: 0; }
+.section-why__item:last-child { border-right: 0; padding-right: 0; }
 .section-why__num {
   font-family: var(--font-display); font-size: 88px; line-height: 0.9; color: var(--loam-neon);
 }
@@ -541,7 +542,7 @@ ul { list-style: none; }
   padding: 18px 20px; font-family: var(--font-body); font-size: 16px;
   color: #0A0A0A; outline: none;
 }
-.newsletter-form input::placeholder { color: var(--loam-graphite); }
+.newsletter-form input::placeholder { color: #3A3A3A; }
 .newsletter-form button {
   background: var(--loam-black); color: var(--loam-neon); border: 0;
   font-family: var(--font-narrow); font-weight: 700;
@@ -572,8 +573,9 @@ ul { list-style: none; }
   display: grid; grid-template-columns: repeat(3, 1fr);
   margin-top: 32px; border-top: 1px solid var(--loam-charcoal);
 }
-.section-ambassador__stat { padding: 18px 16px 18px 0; border-right: 1px solid var(--loam-charcoal); }
-.section-ambassador__stat:last-child { border-right: 0; }
+.section-ambassador__stat { padding: 18px 20px; border-right: 1px solid var(--loam-charcoal); }
+.section-ambassador__stat:first-child { padding-left: 0; }
+.section-ambassador__stat:last-child { border-right: 0; padding-right: 0; }
 .section-ambassador__stat-num {
   font-family: var(--font-display); font-size: 44px; color: var(--loam-neon); line-height: 0.9;
 }
@@ -606,7 +608,7 @@ ul { list-style: none; }
   padding: 10px 0; font-family: var(--font-body); font-size: 15px;
   color: var(--loam-white); outline: none; width: 100%;
 }
-.field-input::placeholder { color: var(--loam-graphite); }
+.field-input::placeholder { color: #6A6A6A; }
 .field-input:focus { border-bottom-color: var(--loam-neon); }
 
 .field-input--dark {
@@ -626,7 +628,7 @@ textarea.field-input { resize: vertical; }
 .form-checkbox input { margin-top: 4px; accent-color: var(--loam-neon); }
 
 .form-success {
-  background: var(--loam-neon); color: var(--loam-black); padding: 24px 22px;
+  background: var(--loam-neon); color: #0A0A0A; padding: 24px 22px;
 }
 .form-success__title { font-family: var(--font-display); font-size: 28px; text-transform: uppercase; line-height: 1; }
 .form-success__sub { font-family: var(--font-mono); font-size: 12px; margin-top: 10px; }
@@ -665,8 +667,9 @@ textarea.field-input { resize: vertical; }
 .section-how { background: var(--loam-black); padding: 80px 48px; border-bottom: var(--bw) solid var(--loam-charcoal); }
 .section-how__heading { font-family: var(--font-display); text-transform: uppercase; font-size: 52px; line-height: 0.95; color: var(--loam-white); margin-bottom: 36px; }
 .section-how__grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-.section-how__item { padding: 8px 22px 8px 0; border-right: 1px solid var(--loam-charcoal); }
-.section-how__item:last-child { border-right: 0; }
+.section-how__item { padding: 8px 28px; border-right: 1px solid var(--loam-charcoal); }
+.section-how__item:first-child { padding-left: 0; }
+.section-how__item:last-child { border-right: 0; padding-right: 0; }
 .section-how__num { font-family: var(--font-display); font-size: 72px; line-height: 0.9; color: var(--loam-neon); }
 .section-how__title { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.16em; color: var(--loam-white); margin-top: 16px; }
 .section-how__desc { font-size: 13px; color: var(--loam-ash); margin-top: 10px; line-height: 1.5; }

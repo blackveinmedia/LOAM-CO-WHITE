@@ -8,7 +8,7 @@
         <h2 style="font-family:var(--font-display);font-size:clamp(48px,7vw,80px);color:var(--loam-white);line-height:.95;letter-spacing:.02em;margin-bottom:24px">
           {{ section.settings.heading | default: 'Apply to ride.' }}
         </h2>
-        <p style="font-size:16px;color:var(--loam-bone);max-width:520px;margin:0 auto 40px;line-height:1.55">
+        <p style="font-size:16px;color:#0A0A0A;max-width:520px;margin:0 auto 40px;line-height:1.55">
           {{ section.settings.subheading | default: 'Sign up through our ambassador portal — powered by GoAffPro. Takes three minutes. We review every application within 7 days.' }}
         </p>
         <a href="{{ section.settings.goaffpro_url }}" target="_blank" rel="noopener" class="btn btn--primary" style="font-size:15px;padding:18px 48px;display:inline-flex;align-items:center;gap:12px">
@@ -28,7 +28,7 @@
           {% for perk in perks %}
             <div style="display:flex;gap:10px;align-items:flex-start">
               <span style="color:var(--loam-neon);font-weight:700;flex-shrink:0">+</span>
-              <span style="font-size:14px;color:var(--loam-bone);line-height:1.4">{{ perk }}</span>
+              <span style="font-size:14px;color:#0A0A0A;line-height:1.4">{{ perk }}</span>
             </div>
           {% endfor %}
         </div>
@@ -38,13 +38,13 @@
       <!-- Fallback contact form (before GoAffPro is set up) -->
       <p class="eyebrow" style="margin-bottom:20px">{{ section.settings.eyebrow | default: 'APPLY' }}</p>
       <h2 class="section-apply__heading">{{ section.settings.heading | default: 'Apply to ride.' }}</h2>
-      <p style="font-size:15px;color:var(--loam-bone);margin-top:16px;margin-bottom:36px">
+      <p style="font-size:15px;color:#0A0A0A;margin-top:16px;margin-bottom:36px">
         {{ section.settings.subheading | default: 'Three minutes. Honest answers. We get back inside 7 days.' }}
       </p>
 
       <div style="background:rgba(218,238,1,0.1);border:1px solid var(--loam-neon);padding:20px;margin-bottom:36px;max-width:600px">
         <p style="font-family:var(--font-narrow);font-size:13px;color:var(--loam-neon);font-weight:700;letter-spacing:.12em;margin-bottom:4px">INSTALL GOAFFPRO</p>
-        <p style="font-size:13px;color:var(--loam-bone)">Add your GoAffPro portal URL in the theme editor to activate the ambassador sign-up flow. Until then, use this contact form.</p>
+        <p style="font-size:13px;color:#0A0A0A">Add your GoAffPro portal URL in the theme editor to activate the ambassador sign-up flow. Until then, use this contact form.</p>
       </div>
 
       {% form 'contact', id: 'ambassador-apply-form', class: 'js-apply-form' %}
