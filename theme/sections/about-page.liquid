@@ -42,6 +42,16 @@
     </div>
   </div>
 
+  {%- if section.settings.team_image != blank -%}
+  <!-- Team photo -->
+  <div style="max-width:1000px;margin:0 auto;padding:0 var(--space-6) 96px">
+    <img src="{{ section.settings.team_image | image_url: width: 1600 }}" alt="{{ section.settings.team_image.alt | default: 'The Loam Co. team' | escape }}" loading="lazy" style="width:100%;height:auto;display:block;border:2px solid var(--loam-charcoal)">
+    {%- if section.settings.team_caption != blank -%}
+      <p style="margin-top:14px;font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:var(--loam-ash)">{{ section.settings.team_caption }}</p>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+
   <!-- Values strip -->
   <div style="background:#0A0A0A;padding:88px var(--space-6)">
     <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px">
@@ -75,7 +85,9 @@
   "name": "Our Story",
   "settings": [
     { "type": "text", "id": "intro", "label": "Intro paragraph" },
-    { "type": "richtext", "id": "body", "label": "Story body (leave blank for default content)" }
+    { "type": "richtext", "id": "body", "label": "Story body (leave blank for default content)" },
+    { "type": "image_picker", "id": "team_image", "label": "Team photo" },
+    { "type": "text", "id": "team_caption", "label": "Team photo caption" }
   ],
   "presets": [{ "name": "Our Story" }]
 }

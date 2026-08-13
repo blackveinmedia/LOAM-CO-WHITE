@@ -2,7 +2,11 @@
   <div class="site-footer__inner">
     <div>
       <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name }}">
-        LOAM<span style="font-size:16px;letter-spacing:.04em">CO.</span>
+        {%- if settings.logo_on_light != blank -%}
+          <img src="{{ settings.logo_on_light | image_url: width: 320 }}" alt="{{ shop.name | escape }}" style="width:104px;height:auto;display:block">
+        {%- else -%}
+          LOAM<span style="font-size:16px;letter-spacing:.04em">CO.</span>
+        {%- endif -%}
       </a>
       <p class="site-footer__tagline">
         {{ section.settings.tagline | default: 'Rider owned. Trail tested. Made to be worn out.' }}

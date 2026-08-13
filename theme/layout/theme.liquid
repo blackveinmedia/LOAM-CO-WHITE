@@ -95,6 +95,22 @@
   }
   </script>
 
+  {%- if settings.biz_address != blank -%}
+  <!-- LocalBusiness schema (only when an address is set) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": {{ settings.biz_name | default: shop.name | json }},
+    "url": {{ shop.url | json }},
+    "email": {{ settings.biz_email | default: 'ride.loamco@gmail.com' | json }},
+    {% if settings.biz_phone != blank %}"telephone": {{ settings.biz_phone | json }},{% endif %}
+    {% if settings.share_image != blank %}"image": "{{ settings.share_image | image_url: width: 1200 }}",{% endif %}
+    "address": { "@type": "PostalAddress", "streetAddress": {{ settings.biz_address | strip_newlines | json }} }
+  }
+  </script>
+  {%- endif -%}
+
   <!-- WebSite schema with sitelinks search -->
   <script type="application/ld+json">
   {
@@ -183,6 +199,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Narrow:wght@400;500;600;700&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+
+  {%- if settings.ga_measurement_id != blank -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.ga_measurement_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', {{ settings.ga_measurement_id | json }});
+    </script>
+  {%- endif -%}
 
   {{ content_for_header }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
