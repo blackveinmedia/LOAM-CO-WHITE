@@ -1,9 +1,10 @@
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer__inner">
     <div>
+      {%- assign footer_logo = section.settings.logo_light | default: settings.logo_on_light -%}
       <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name }}">
-        {%- if settings.logo_on_light != blank -%}
-          <img src="{{ settings.logo_on_light | image_url: width: 320 }}" alt="{{ shop.name | escape }}" style="width:104px;height:auto;display:block">
+        {%- if footer_logo != blank -%}
+          <img src="{{ footer_logo | image_url: width: 320 }}" alt="{{ shop.name | escape }}" style="width:104px;height:auto;display:block">
         {%- else -%}
           LOAM<span style="font-size:16px;letter-spacing:.04em">CO.</span>
         {%- endif -%}
@@ -51,6 +52,7 @@
 {
   "name": "Footer",
   "settings": [
+    { "type": "image_picker", "id": "logo_light", "label": "Footer logo (BLACK version)", "info": "Leave blank to use the LOAM CO. text." },
     { "type": "text", "id": "tagline", "label": "Tagline", "default": "Rider owned. Trail tested. Made to be worn out." },
     { "type": "text", "id": "company_number", "label": "Company number", "default": "COMPANY NO. 12345678" }
   ]

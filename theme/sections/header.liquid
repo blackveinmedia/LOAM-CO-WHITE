@@ -1,7 +1,9 @@
+{%- assign header_logo = section.settings.logo_light | default: settings.logo_on_light -%}
+{%- assign header_logo_w = section.settings.logo_width | default: settings.logo_width | default: 64 -%}
 <header class="site-header" role="banner">
   <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name }}">
-    {%- if settings.logo_on_light != blank -%}
-      <img src="{{ settings.logo_on_light | image_url: width: 320 }}" alt="{{ shop.name | escape }}" style="width:{{ settings.logo_width | default: 64 }}px;height:auto;display:block">
+    {%- if header_logo != blank -%}
+      <img src="{{ header_logo | image_url: width: 320 }}" alt="{{ shop.name | escape }}" style="width:{{ header_logo_w }}px;height:auto;display:block">
     {%- else -%}
       LOAM<span>CO.</span>
     {%- endif -%}
@@ -45,9 +47,10 @@
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
   <div class="mobile-nav__header">
+    {%- assign mnav_logo = section.settings.logo_dark | default: settings.logo_on_dark -%}
     <a href="{{ routes.root_url }}" class="mobile-nav__logo" aria-label="{{ shop.name }}">
-      {%- if settings.logo_on_dark != blank -%}
-        <img src="{{ settings.logo_on_dark | image_url: width: 240 }}" alt="{{ shop.name | escape }}" style="width:56px;height:auto;display:block">
+      {%- if mnav_logo != blank -%}
+        <img src="{{ mnav_logo | image_url: width: 240 }}" alt="{{ shop.name | escape }}" style="width:56px;height:auto;display:block">
       {%- else -%}
         LOAM<small>CO.</small>
       {%- endif -%}
@@ -78,6 +81,11 @@
 {
   "name": "Header",
   "settings": [
+    { "type": "header", "content": "Logo" },
+    { "type": "image_picker", "id": "logo_light", "label": "Logo — BLACK version", "info": "Shown in the header (light background). Leave blank to use the LOAM CO. text." },
+    { "type": "image_picker", "id": "logo_dark", "label": "Logo — LIME version", "info": "Shown in the mobile menu (dark background)." },
+    { "type": "range", "id": "logo_width", "label": "Header logo width", "min": 40, "max": 140, "step": 4, "default": 64, "unit": "px" },
+    { "type": "header", "content": "Navigation" },
     {
       "type": "link_list",
       "id": "menu",
