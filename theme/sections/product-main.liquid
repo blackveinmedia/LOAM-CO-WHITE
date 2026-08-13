@@ -183,27 +183,28 @@
     {%- endfor -%}
   </div>
 
-  <!-- ══ People also bought ══ -->
-  {%- for block in section.blocks -%}
-    {%- if block.type == 'recommendations' -%}
-      {%- assign reco = collections[block.settings.collection] -%}
-      {%- if reco != blank and reco.products_count > 0 -%}
-        <div class="pdp-reco" {{ block.shopify_attributes }}>
-          <h2 class="pdp-reco__heading">{{ block.settings.heading | default: 'People also bought' }}</h2>
-          <div class="pdp-reco__grid">
-            {%- assign shown = 0 -%}
-            {%- for p in reco.products -%}
-              {%- if p.id != product.id -%}
-                {% render 'product-card', card_product: p %}
-                {%- assign shown = shown | plus: 1 -%}
-                {%- if shown >= block.settings.products_to_show -%}{%- break -%}{%- endif -%}
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
-        </div>
-      {%- endif -%}
+  <!-- ══ People also bought (shows on every product page automatically) ══ -->
+  {%- if section.settings.show_reco -%}
+    {%- assign reco = collections[section.settings.reco_collection] -%}
+    {%- if reco == blank or reco.products_count == 0 -%}
+      {%- assign reco = product.collections.first -%}
     {%- endif -%}
-  {%- endfor -%}
+    {%- if reco != blank and reco.products_count > 1 -%}
+      <div class="pdp-reco">
+        <h2 class="pdp-reco__heading">{{ section.settings.reco_heading | default: 'People also bought' }}</h2>
+        <div class="pdp-reco__grid">
+          {%- assign shown = 0 -%}
+          {%- for p in reco.products -%}
+            {%- if p.id != product.id -%}
+              {% render 'product-card', card_product: p %}
+              {%- assign shown = shown | plus: 1 -%}
+              {%- if shown >= section.settings.reco_count -%}{%- break -%}{%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
 
   {%- if section.settings.show_sticky_atc != false -%}
     <div class="sticky-atc" aria-hidden="false">
@@ -239,7 +240,12 @@
     { "type": "header", "content": "Options" },
     { "type": "checkbox", "id": "show_sticky_atc", "label": "Sticky add-to-cart bar (mobile)", "default": true },
     { "type": "checkbox", "id": "show_low_stock", "label": "Show low-stock warning", "default": true },
-    { "type": "range", "id": "low_stock_threshold", "label": "Low-stock threshold", "min": 1, "max": 25, "step": 1, "default": 6, "info": "Show the warning when stock is at or below this number (needs inventory tracking on)." }
+    { "type": "range", "id": "low_stock_threshold", "label": "Low-stock threshold", "min": 1, "max": 25, "step": 1, "default": 6, "info": "Show the warning when stock is at or below this number (needs inventory tracking on)." },
+    { "type": "header", "content": "People also bought" },
+    { "type": "checkbox", "id": "show_reco", "label": "Show 'People also bought' row", "default": true },
+    { "type": "text", "id": "reco_heading", "label": "Heading", "default": "People also bought" },
+    { "type": "collection", "id": "reco_collection", "label": "Collection (optional)", "info": "Leave blank to use this product's own collection automatically." },
+    { "type": "range", "id": "reco_count", "label": "Products to show", "min": 2, "max": 8, "step": 1, "default": 4 }
   ],
   "blocks": [
     {
@@ -296,16 +302,6 @@
       ]
     },
     {
-      "type": "recommendations",
-      "name": "People also bought",
-      "limit": 1,
-      "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "People also bought" },
-        { "type": "collection", "id": "collection", "label": "Collection to show", "info": "Pick the collection these recommendations come from. The current product is skipped automatically." },
-        { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 8, "step": 1, "default": 4 }
-      ]
-    },
-    {
       "type": "text",
       "name": "Text / note",
       "settings": [
@@ -321,8 +317,7 @@
         { "type": "size_guide" },
         { "type": "collapsible", "settings": { "heading": "Shipping & returns", "content": "<p>Free UK standard shipping on orders over £50 (£3.99 under). Express and next-day options at checkout. 30-day easy returns.</p>" } },
         { "type": "collapsible", "settings": { "heading": "Crash replacement", "content": "<p>Trashed your kit in a crash? We'll replace it at 40% off within a year of purchase.</p>" } },
-        { "type": "collapsible", "settings": { "heading": "Care", "content": "<p>Machine wash cold (30°C), no fabric softener, hang dry.</p>" } },
-        { "type": "recommendations" }
+        { "type": "collapsible", "settings": { "heading": "Care", "content": "<p>Machine wash cold (30°C), no fabric softener, hang dry.</p>" } }
       ]
     }
   ]
