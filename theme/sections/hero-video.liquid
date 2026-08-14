@@ -26,7 +26,7 @@
     <h1 class="hero-video__headline">{{ section.settings.headline | default: 'Rider-owned mountain bike clothing.' }}</h1>
     <p class="hero-video__subtext">{{ section.settings.subtext | default: 'Priced like we ride it ourselves, because we do.' }}</p>
     <div class="hero-video__cta-row">
-      <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary">{{ section.settings.cta_label | default: 'DISCOVER THE RANGE' }}</a>
+      <a href="{{ section.settings.cta_url | default: collections['shop-all'].url | default: routes.all_products_collection_url }}" class="btn btn--primary">{{ section.settings.cta_label | default: 'DISCOVER THE RANGE' }}</a>
       {% if section.settings.cta2_label != blank %}
         <a href="{{ section.settings.cta2_url | default: routes.root_url }}" class="btn btn--outline">{{ section.settings.cta2_label }}</a>
       {% endif %}

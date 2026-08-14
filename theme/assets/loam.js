@@ -68,7 +68,7 @@
 
     if (cart.items.length === 0) {
       body.innerHTML = '<p class="cart-drawer__empty">Bag\'s empty. Get to it.</p>'
-        + '<a href="/collections/all" class="btn btn--primary" style="margin-top:18px">SHOP THE KIT</a>';
+        + '<a href="/collections/shop-all" class="btn btn--primary" style="margin-top:18px">SHOP THE KIT</a>';
     } else {
       body.innerHTML = cart.items.map((item, idx) => `
         <div class="cart-item">
