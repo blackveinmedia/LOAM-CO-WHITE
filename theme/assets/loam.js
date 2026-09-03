@@ -362,6 +362,50 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSG(); });
   }
 
+  /* ── Klaviyo styled newsletter form ──────────────────────────────────────── */
+  document.querySelectorAll('.js-klaviyo-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const key = form.dataset.klaviyoKey;
+      const list = form.dataset.klaviyoList;
+      const input = form.querySelector('input[type="email"]');
+      const email = ((input && input.value) || '').trim();
+      const btn = form.querySelector('button');
+      const msg = form.parentElement.querySelector('.newsletter-msg');
+      const show = (t) => { if (msg) { msg.hidden = false; msg.textContent = t; } };
+      if (!email || !key || !list) return;
+      const original = btn.textContent;
+      btn.disabled = true; btn.textContent = '...';
+      try {
+        const res = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + encodeURIComponent(key), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'revision': '2024-10-15' },
+          body: JSON.stringify({
+            data: {
+              type: 'subscription',
+              attributes: {
+                custom_source: 'Website newsletter',
+                profile: { data: { type: 'profile', attributes: { email: email } } }
+              },
+              relationships: { list: { data: { type: 'list', id: list } } }
+            }
+          })
+        });
+        if (res.ok) {
+          form.reset();
+          btn.textContent = '✓ JOINED';
+          show("You're in — check your inbox to confirm.");
+        } else {
+          btn.disabled = false; btn.textContent = original;
+          show('Something went wrong — please try again.');
+        }
+      } catch (err) {
+        btn.disabled = false; btn.textContent = original;
+        show('Something went wrong — please try again.');
+      }
+    });
+  });
+
   /* ── Init: refresh cart count on page load ───────────────────────────────── */
   fetchCart().then(cart => {
     document.querySelectorAll('.cart-count').forEach(el => {

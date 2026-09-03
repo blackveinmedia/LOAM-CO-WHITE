@@ -552,6 +552,7 @@ ul { list-style: none; }
   text-transform: uppercase; letter-spacing: 0.18em; font-size: 13px;
   padding: 0 28px; cursor: pointer; white-space: nowrap;
 }
+.newsletter-msg { margin-top: 12px; font-family: var(--font-narrow); font-weight: 700; font-size: 13px; letter-spacing: 0.04em; color: #0A0A0A; }
 .newsletter-form--success {
   padding: 20px 24px; background: #0A0A0A; color: var(--loam-neon);
   font-family: var(--font-display); font-size: 28px; text-transform: uppercase;
