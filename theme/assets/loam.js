@@ -135,6 +135,7 @@
         if (res.ok) {
           addBtn.textContent = '✓ ADDED';
           addBtn.classList.add('is-added');
+          if (window.fbq) { fbq('track', 'AddToCart', { content_ids: [variantId], content_type: 'product' }); }
           await refreshCart();
           openCart();
           setTimeout(() => {

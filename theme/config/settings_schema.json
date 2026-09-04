@@ -76,7 +76,8 @@
   {
     "name": "Analytics",
     "settings": [
-      { "type": "text", "id": "ga_measurement_id", "label": "Google Analytics 4 ID", "info": "e.g. G-XXXXXXXXXX. Leave blank to disable." }
+      { "type": "text", "id": "ga_measurement_id", "label": "Google Analytics 4 ID", "info": "e.g. G-XXXXXXXXXX. Leave blank to disable." },
+      { "type": "text", "id": "meta_pixel_id", "label": "Meta (Facebook) Pixel ID", "info": "The 15–16 digit pixel ID from Meta Events Manager. Tracks PageView, ViewContent and AddToCart on the storefront. Leave blank to disable." }
     ]
   },
   {

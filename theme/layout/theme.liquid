@@ -210,6 +210,25 @@
     </script>
   {%- endif -%}
 
+  {%- if settings.meta_pixel_id != blank -%}
+    <!-- Meta Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', {{ settings.meta_pixel_id | json }});
+      fbq('track', 'PageView');
+      {%- if request.page_type == 'product' -%}
+      fbq('track', 'ViewContent', {
+        content_ids: [{{ product.selected_or_first_available_variant.id | json }}],
+        content_name: {{ product.title | json }},
+        content_type: 'product',
+        value: {{ product.price | divided_by: 100.0 }},
+        currency: {{ cart.currency.iso_code | json }}
+      });
+      {%- endif -%}
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={{ settings.meta_pixel_id }}&ev=PageView&noscript=1" alt=""></noscript>
+  {%- endif -%}
+
   {{ content_for_header }}
   {{ 'base.css' | asset_url | stylesheet_tag }}
 </head>
