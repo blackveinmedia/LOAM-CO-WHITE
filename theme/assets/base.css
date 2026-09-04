@@ -345,18 +345,34 @@ ul { list-style: none; }
 .btn-add-to-cart {
   margin-top: auto; padding-top: 12px;
 }
-.btn-add-to-cart button {
+.btn-add-to-cart > button,
+.btn-add-to-cart > .quick-add__choose {
+  display: block; text-align: center; text-decoration: none;
   width: 100%; padding: 12px 16px;
   font-family: var(--font-narrow); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px;
   background: transparent; color: var(--loam-white); border: var(--bw) solid var(--loam-white);
   cursor: pointer; transition: all var(--dur-fast) var(--ease-snap);
 }
-.btn-add-to-cart button:hover,
-.btn-add-to-cart button.is-added {
+.btn-add-to-cart > button:hover,
+.btn-add-to-cart > .quick-add__choose:hover,
+.btn-add-to-cart > button.is-added {
   background: var(--loam-neon); color: #0A0A0A; border-color: var(--loam-neon);
 }
-.btn-add-to-cart button:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-add-to-cart > button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Quick-add size picker (product cards) */
+.quick-add { margin-top: 8px; }
+.quick-add__label { display: block; font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; color: var(--loam-ash); margin-bottom: 6px; }
+.quick-add__sizes { display: flex; flex-wrap: wrap; gap: 6px; }
+.quick-add__size {
+  border: var(--bw) solid var(--loam-charcoal); background: #FFFFFF; color: #0A0A0A;
+  font-family: var(--font-narrow); font-weight: 700; font-size: 12px; letter-spacing: 0.06em;
+  padding: 9px 11px; min-width: 40px; cursor: pointer; text-transform: uppercase;
+  transition: background var(--dur-fast), border-color var(--dur-fast);
+}
+.quick-add__size:hover, .quick-add__size.is-added { background: var(--loam-neon); border-color: var(--loam-neon); }
+.quick-add__size.is-unavailable, .quick-add__size:disabled { opacity: 0.4; text-decoration: line-through; cursor: not-allowed; }
 
 /* ── Marquee ─────────────────────────────────────────────────────────────── */
 @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-25%); } }

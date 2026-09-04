@@ -407,6 +407,21 @@
     });
   });
 
+  /* ── Quick-add size picker on product cards ──────────────────────────────── */
+  document.body.addEventListener('click', (e) => {
+    const toggle = e.target.closest('[data-quick-add-toggle]');
+    if (!toggle) return;
+    const panel = toggle.parentElement.querySelector('.quick-add');
+    if (!panel) return;
+    if (panel.hasAttribute('hidden')) {
+      panel.removeAttribute('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+    } else {
+      panel.setAttribute('hidden', '');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
   /* ── Init: refresh cart count on page load ───────────────────────────────── */
   fetchCart().then(cart => {
     document.querySelectorAll('.cart-count').forEach(el => {

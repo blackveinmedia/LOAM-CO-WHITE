@@ -61,16 +61,24 @@
     </div>
 
     <div class="btn-add-to-cart">
-      {%- if first_variant.available -%}
-        <button
-          data-add-to-cart
-          data-variant-id="{{ first_variant.id }}"
-          aria-label="Add {{ card_product.title | escape }} to cart"
-        >
-          ADD TO CART
-        </button>
-      {%- else -%}
+      {%- if card_product.available == false -%}
         <button disabled aria-label="{{ card_product.title | escape }} is sold out">SOLD OUT</button>
+      {%- elsif card_product.has_only_default_variant -%}
+        <button data-add-to-cart data-variant-id="{{ first_variant.id }}" aria-label="Add {{ card_product.title | escape }} to cart">ADD TO CART</button>
+      {%- elsif card_product.options.size == 1 -%}
+        <button type="button" class="js-quick-add-toggle" data-quick-add-toggle aria-expanded="false">ADD TO CART</button>
+        <div class="quick-add" hidden>
+          <span class="quick-add__label">Choose a size</span>
+          <div class="quick-add__sizes">
+            {%- for variant in card_product.variants -%}
+              <button type="button" class="quick-add__size{% unless variant.available %} is-unavailable{% endunless %}"
+                {% if variant.available %}data-add-to-cart data-variant-id="{{ variant.id }}"{% else %}disabled{% endif %}
+                aria-label="Add {{ card_product.title | escape }} — {{ variant.title | escape }}">{{ variant.title }}</button>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- else -%}
+        <a href="{{ card_product.url }}" class="quick-add__choose">CHOOSE OPTIONS</a>
       {%- endif -%}
     </div>
   </div>
