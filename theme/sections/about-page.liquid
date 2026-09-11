@@ -1,7 +1,7 @@
 <div style="background:#FFFFFF">
 
   <!-- Hero -->
-  <div style="background:#0A0A0A;padding:clamp(76px,10vw,116px) var(--space-6)">
+  <div style="background:#0A0A0A;padding:clamp(96px,11vw,136px) var(--space-6)">
     <div style="max-width:900px;margin:0 auto">
       <p class="eyebrow eyebrow--neon" style="margin-bottom:20px">OUR STORY</p>
       <h1 style="font-family:var(--font-display);font-size:clamp(64px,10vw,120px);color:#FFFFFF;line-height:.9;letter-spacing:.02em;margin-bottom:32px">
@@ -19,7 +19,7 @@
   </div>
 
   <!-- Story body -->
-  <div style="max-width:800px;margin:0 auto;padding:clamp(80px,11vw,120px) var(--space-6)">
+  <div style="max-width:800px;margin:0 auto;padding:clamp(96px,11vw,132px) var(--space-6)">
     <div class="about-prose" style="font-size:16px;line-height:1.7;color:#0A0A0A">
       {% if section.settings.body != blank %}
         {{ section.settings.body }}
@@ -44,7 +44,7 @@
 
   {%- if section.settings.team_image != blank -%}
   <!-- Team photo -->
-  <div style="max-width:1000px;margin:0 auto;padding:0 var(--space-6) clamp(80px,11vw,120px)">
+  <div style="max-width:1000px;margin:0 auto;padding:0 var(--space-6) clamp(96px,11vw,132px)">
     <img src="{{ section.settings.team_image | image_url: width: 1600 }}" alt="{{ section.settings.team_image.alt | default: 'The Loam Co. team' | escape }}" loading="lazy" style="width:100%;height:auto;display:block;border:2px solid var(--loam-charcoal)">
     {%- if section.settings.team_caption != blank -%}
       <p style="margin-top:14px;font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:var(--loam-ash)">{{ section.settings.team_caption }}</p>
@@ -53,7 +53,7 @@
   {%- endif -%}
 
   <!-- Values strip -->
-  <div style="background:#0A0A0A;padding:clamp(80px,11vw,120px) var(--space-6)">
+  <div style="background:#0A0A0A;padding:clamp(96px,11vw,132px) var(--space-6)">
     <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(40px,5vw,56px)">
       <div>
         <div style="font-family:var(--font-display);font-size:56px;color:var(--loam-neon);line-height:1;margin-bottom:12px">01</div>
