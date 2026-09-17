@@ -48,6 +48,7 @@
 
   <div class="product-card__body">
     <a href="{{ card_product.url }}" class="product-card__title">{{ card_product.title }}</a>
+    <div class="jdgm-widget jdgm-preview-badge" data-id="{{ card_product.id }}" data-template="index" style="margin-top:6px"></div>
 
     {%- if card_product.description != blank -%}
       <p class="product-card__desc">{{ card_product.description | strip_html | truncate: 80 }}</p>

@@ -49,6 +49,8 @@
 
       <h1 class="product-page__title">{{ product.title }}</h1>
 
+      <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}" style="margin-top:10px"></div>
+
       <div style="display:flex;align-items:baseline;gap:12px;margin-top:12px">
         <span class="product-page__price" id="product-price">{{ current_variant.price | money }}</span>
         {%- if current_variant.compare_at_price > current_variant.price -%}
@@ -183,6 +185,11 @@
 
       {%- endcase -%}
     {%- endfor -%}
+  </div>
+
+  <!-- ══ Reviews (Judge.me) ══ -->
+  <div style="max-width:900px;margin:0 auto;padding:0 var(--space-6) clamp(72px,10vw,104px)">
+    <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-product-title="{{ product.title | escape }}"></div>
   </div>
 
   <!-- ══ People also bought (shows on every product page automatically) ══ -->
