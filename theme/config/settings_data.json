@@ -68,40 +68,10 @@
       },
       "reviews": {
         "type": "reviews",
-        "blocks": {
-          "review_GJPbqC": {
-            "type": "review",
-            "settings": {
-              "rating": 5,
-              "review": "\"You can tell the crew at Loam Co. actually spends their time in the woods. From the subtle reinforced stitching to the designs that actually represent the culture, it just feels authentic. Shipping was fast, and the packaging had that personal touch you don't get from the big corporate brands. Support local, ride loam!\"",
-              "author": "Alfie | Local, or maybe from around here"
-            }
-          },
-          "review_XXrG63": {
-            "type": "review",
-            "settings": {
-              "rating": 5,
-              "review": "\"I've put the Loam Co. Tech Tee through the absolute ringer this season. Usually, after a few wash cycles and a slide out in the berms, most jerseys start looking ragged. This thing still looks brand new. It breathes incredibly well on the climbs but doesn't feel like tissue paper when you're hauling through the brush. It's officially my go-to for every Saturday session.\"",
-              "author": "Jake M | Scotland"
-            }
-          },
-          "review_BHnnxz": {
-            "type": "review",
-            "settings": {
-              "rating": 5,
-              "review": "\"There is a lot of MTB gear out there that looks a bit... much. What I love about Loam Co. is that I can wear the hoodie at the trailhead and then head straight to the brewery without looking like I just finished a Motocross race. The fit is spot on, and the fabric is ridiculously soft. It's the first thing I grab out of the dryer every single time.\"",
-              "author": "Chloe S | England"
-            }
-          }
-        },
-        "block_order": [
-          "review_GJPbqC",
-          "review_XXrG63",
-          "review_BHnnxz"
-        ],
         "settings": {
           "eyebrow": "WHAT THE RIDERS SAY",
-          "heading": "REVIEWS"
+          "heading": "REVIEWS",
+          "show_section": false
         }
       },
       "ambassadors-cta": {
