@@ -31,6 +31,7 @@
 
       {%- if card_product.featured_image -%}
         <img
+          class="product-card__img product-card__img--primary"
           src="{{ card_product.featured_image | image_url: width: 800 }}"
           srcset="{{ card_product.featured_image | image_url: width: 400 }} 400w,
                   {{ card_product.featured_image | image_url: width: 800 }} 800w"
@@ -40,6 +41,21 @@
           width="800"
           height="800"
         >
+        {%- if card_product.images.size > 1 -%}
+          {%- assign second_image = card_product.images[1] -%}
+          <img
+            class="product-card__img product-card__img--secondary"
+            src="{{ second_image | image_url: width: 800 }}"
+            srcset="{{ second_image | image_url: width: 400 }} 400w,
+                    {{ second_image | image_url: width: 800 }} 800w"
+            sizes="(max-width: 768px) 50vw, 25vw"
+            alt="{{ second_image.alt | default: card_product.title | escape }}"
+            loading="lazy"
+            width="800"
+            height="800"
+            aria-hidden="true"
+          >
+        {%- endif -%}
       {%- else -%}
         <div class="product-card__placeholder">{{ card_product.title | upcase }} · IMAGE</div>
       {%- endif -%}
